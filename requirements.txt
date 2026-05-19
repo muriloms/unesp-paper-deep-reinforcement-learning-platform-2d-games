@@ -1,0 +1,37 @@
+# =======================================================================
+# Mario DRL — dependências travadas e testadas em conjunto.
+# NÃO alterar versões sem revalidar — gym-super-mario-bros tem múltiplas
+# armadilhas de compatibilidade com NumPy 2.x, gym/gymnasium recentes e
+# Python 3.12+.
+# =======================================================================
+
+# --- Core científico (numpy<2 é obrigatório por causa do nes-py) ----------
+numpy<2.0
+pandas>=2.0
+scipy>=1.10
+matplotlib>=3.7
+seaborn>=0.13
+tqdm>=4.65
+
+# --- Deep learning -------------------------------------------------------
+# Para CUDA, ver nota no README sobre --index-url do PyTorch.
+torch>=2.0,<2.5
+tensorboard>=2.14
+
+# --- RL: legado (old gym) + moderno (gymnasium) coexistem ----------------
+# gym==0.26.2 é a última release antes do split para gymnasium e é o que
+# nes-py / gym-super-mario-bros usam internamente. shimmy faz a ponte.
+gym==0.26.2
+gymnasium==0.29.1
+shimmy==1.3.0
+stable-baselines3==2.3.2
+
+# --- Super Mario Bros env ------------------------------------------------
+gym-super-mario-bros==7.4.0
+nes-py==8.2.1
+
+# --- Utilitários ---------------------------------------------------------
+opencv-python-headless>=4.8
+imageio>=2.30
+ipykernel>=6.25
+jupyterlab>=4.0
