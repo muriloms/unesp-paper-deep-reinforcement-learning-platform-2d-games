@@ -1,0 +1,23 @@
+nohup: ignoring input
+Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+Users of this version of Gym should be able to simply replace 'import gym' with 'import gymnasium as gym' in the vast majority of cases.
+See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+Python : 3.10.18
+PyTorch: 2.4.1+cu121 | CUDA: True
+GPU    : NVIDIA GeForce RTX 4070 Laptop GPU
+VRAM   : 8.2 GB
+
+Profile         : full
+Algos           : ['A2C']
+Stages          : ['1-1', '1-2', '4-1', '8-1']
+Seeds           : [42, 123, 2024]
+Total timesteps : 500,000
+Total treinos   : 12
+Reward shaping  : não
+Output em       : /home/murilo/Documents/academico/unesp_cc/repos/unesp-paper-deep-reinforcement-learning-platform-2d-games/mario_drl_results
+
+
+======================================================================
+[1/12] A2C | stage 1-1 | seed 42
+======================================================================

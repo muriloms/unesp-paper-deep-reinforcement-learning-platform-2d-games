@@ -1,94 +1,191 @@
-# Mario DRL — Fase 1 (Notebook)
+# Mario DRL — Projeto Modular
 
-Notebook ponta-a-ponta para o artigo *Avaliação Automática de Dificuldade em Jogos de Plataforma 2D por meio de Agentes de Deep Reinforcement Learning* (DQN vs PPO vs A2C no Super Mario Bros).
+Pipeline modular para o artigo *Avaliação Automática de Dificuldade em Jogos de Plataforma 2D por meio de Agentes de Deep Reinforcement Learning* (DQN vs PPO vs A2C no Super Mario Bros).
 
-## Pré-requisitos (Linux + GPU)
+## Estrutura do projeto
 
+```
+mario_drl/
+├── src/                          # Pacote Python — toda a lógica vive aqui
+│   ├── config.py                 # Constantes (paths, fases, seeds, hyperparams)
+│   ├── env.py                    # Environment factory + CompatJoypadSpace
+│   ├── callbacks.py              # MarioEvalCallback (persistência incremental)
+│   ├── training.py               # train_one + resume from checkpoint + run_matrix
+│   ├── analysis.py               # Grupos I/II + Spearman + Mann-Whitney
+│   ├── plots.py                  # learning curves, group I/II charts
+│   ├── visualization.py          # GIF rendering (agent, side-by-side, evolution)
+│   └── utils.py                  # seed, device, env validation
+├── scripts/                      # CLIs executáveis
+│   ├── train.py                  # python scripts/train.py
+│   ├── analyze.py                # python scripts/analyze.py
+│   └── render.py                 # python scripts/render.py
+├── notebooks/
+│   └── 99_analysis_explore.ipynb # Análise interativa (importa de src/)
+├── mario_drl_results/            # Saídas (criado em runtime — ignorado pelo git)
+│   ├── models/                   # *.zip — modelos finais
+│   │   └── checkpoints/          # *_{N}_steps.zip — para resume e evolução
+│   ├── logs/                     # *.csv — métricas por episódio
+│   ├── tensorboard/              # TB logs
+│   ├── metrics/                  # CSVs consolidados (Grupos I/II, Spearman, MW)
+│   └── plots/                    # PNGs + GIFs
+├── requirements.txt
+├── pyproject.toml
+└── README.md
+```
+
+## Pré-requisitos
+
+- **Linux** (Ubuntu/Debian) com NVIDIA GPU + driver CUDA
 - **`uv`** instalado:
   ```bash
   curl -LsSf https://astral.sh/uv/install.sh | sh
   ```
-- **CUDA 11.8 ou 12.x** com driver NVIDIA compatível
-- **Pacotes do sistema** para compilar `nes-py` (Cython + SDL2):
+- **Bibliotecas do sistema** para compilar `nes-py`:
   ```bash
   sudo apt update
   sudo apt install -y build-essential python3-dev libsdl2-dev
   ```
 
-> O `nes-py` **não compila** em Python 3.12+ no momento. Use **3.10 ou 3.11** — o passo seguinte garante isso via `uv`.
+> Use **Python 3.10 ou 3.11**. O `nes-py 8.2.1` não compila em 3.12+.
 
-## Setup do ambiente com `uv`
+## Setup
 
-A partir da pasta onde estão `mario_drl_phase1.ipynb` e `requirements.txt`:
+A partir da raiz do projeto:
 
 ```bash
-# 1) Instala Python 3.10 gerenciado pelo uv (não interfere no Python do sistema)
+# 1) Python 3.10 gerenciado pelo uv (não interfere no Python do sistema)
 uv python install 3.10
 
-# 2) Cria o venv .venv/ na pasta do projeto, fixado em 3.10
+# 2) Venv local
 uv venv --python 3.10
-
-# 3) Ativa
 source .venv/bin/activate
 
-# 4) Instala as dependências travadas
+# 3) Dependências travadas
 uv pip install -r requirements.txt
-
-# 5) Registra o kernel para o Jupyter encontrar
-python -m ipykernel install --user --name=mario_drl --display-name "Python (mario_drl)"
 ```
 
-### Nota sobre PyTorch + CUDA
-
-O `pip install torch` padrão já traz binários com CUDA no Linux x86_64, então o passo 4 acima resolve na maioria dos casos. Se precisar forçar uma versão específica de CUDA (ex: CUDA 12.1), substitua a instalação do torch por:
-
+Se precisar de uma versão específica de CUDA (ex: 12.1):
 ```bash
 uv pip install torch==2.4.* --index-url https://download.pytorch.org/whl/cu121
-uv pip install -r requirements.txt   # instala o resto
 ```
 
-Verifique o link correto na [matriz oficial do PyTorch](https://pytorch.org/get-started/locally/) para sua versão de CUDA.
+## Uso via CLI
 
-## Abrindo o notebook
+### Treinamento
+
+Validação rápida (~2 min, 1 algo × 1 fase × 1 seed × 10k timesteps):
+```bash
+python scripts/train.py --profile smoke
+```
+
+Experimento completo (36 treinos × 500k timesteps, ~60h):
+```bash
+python scripts/train.py --profile full
+```
+
+**Subsets** (úteis para fatiar o trabalho em sessões):
+```bash
+# Apenas PPO em todas as fases e seeds
+python scripts/train.py --profile full --algos PPO
+
+# DQN + PPO só na fase 1-1
+python scripts/train.py --profile full --algos DQN PPO --stages 1-1
+
+# Um treino específico, ignorando o que já foi feito
+python scripts/train.py --profile full --algos DQN --stages 4-1 --seeds 42 --overwrite
+```
+
+### Análise
+
+Gera todos os CSVs (`metrics/`) e plots (`plots/`):
+```bash
+python scripts/analyze.py
+```
+
+Só CSVs (sem PNGs):
+```bash
+python scripts/analyze.py --no-plots
+```
+
+### Visualizações (GIFs)
 
 ```bash
-jupyter lab
+# 1 modelo, 1 fase
+python scripts/render.py agent --algo PPO --stage 1-1 --seed 42
+
+# DQN vs PPO vs A2C lado-a-lado (mesma fase, mesmo seed)
+python scripts/render.py compare --stage 4-1 --seed 42
+
+# Evolução temporal do PPO (5 checkpoints uniformes)
+python scripts/render.py evolution --algo PPO --stage 1-1 --seed 42
+
+# Gera todos os GIFs disponíveis (agent + compare para cada config)
+python scripts/render.py all
 ```
 
-Selecione o kernel **"Python (mario_drl)"**. A célula `!pip install ...` (célula 3 do notebook) pode ser **ignorada** — o `uv` já instalou tudo.
+### Notebook de análise
 
-## Roteiro de execução
-
-1. **Smoke test** (~2 min): `SMOKE_TEST=True` na célula 7. Roda 1 treino PPO curto na fase 1-1 para validar o pipeline ponta-a-ponta. Se passar, está tudo OK.
-2. **Experimento completo** (~60h GPU): set `SMOKE_TEST=False`, **reinicie o kernel** e descomente `results = run_all_experiments()` na célula 19. A função é idempotente — se cair, é só rerodar e ela pula o que já completou.
-3. **Análise**: depois dos treinos, execute as células 20→35 sequencialmente. Os CSVs e PNGs ficam em `./mario_drl_results/`.
-
-## Estrutura gerada
-
-```
-mario_drl_results/
-├── models/       # *.zip — modelos SB3 salvos
-├── logs/         # *.csv — métricas de avaliação por episódio
-├── tensorboard/  # logs do TensorBoard
-├── metrics/      # group1_*.csv, group2_*.csv, spearman_*.csv, mannwhitney_*.csv
-└── plots/        # learning_curves.png, group1_comparison.png, group2_difficulty.png
+```bash
+python -m ipykernel install --user --name=mario_drl --display-name "Python (mario_drl)"
+jupyter lab notebooks/99_analysis_explore.ipynb
 ```
 
-## Dicas práticas
+Seleciona o kernel "Python (mario_drl)". O notebook importa diretamente de `src/`, então qualquer mudança nos módulos se propaga sem precisar editar o notebook.
 
-- **Rodando em lotes**: edite `STAGES_TO_RUN` na célula 7 para rodar uma fase de cada vez. Útil para fechar resultados parciais sem prender o terminal por dias.
-- **TensorBoard ao vivo**: `tensorboard --logdir mario_drl_results/tensorboard` em outro terminal.
-- **Memória de GPU**: PPO (8 envs) e A2C (16 envs) podem precisar de ~4–6 GB de VRAM. Se faltar memória, reduza `n_envs` no `HPARAMS` da célula 7 (custo: aumenta tempo total).
-- **DQN é o mais lento** (apenas 1 env) — vale disparar primeiro PPO/A2C em todas as fases enquanto DQN roda em paralelo.
-- **Reativar o ambiente depois**: basta `source .venv/bin/activate` na pasta do projeto.
-- **Adicionar uma dep depois**: `uv pip install <pacote>` — fica registrada no venv ativo.
+## Resume from checkpoint
 
-## Próxima fase (modular)
+`scripts/train.py` é **idempotente E retomável**:
 
-Quando os experimentos estiverem rodando, partimos para:
+| Estado do output | Comportamento |
+|---|---|
+| Modelo final + CSV existem | **Pula** completamente |
+| Não há final, mas há checkpoint parcial (ex: `*_300000_steps.zip`) | **Retoma** dali, treina só os 200k restantes |
+| Nada existe | Começa do zero |
 
-- `train.py` CLI com `argparse` (ou `typer`)
-- Configs em YAML (`config/dqn.yaml`, etc.)
-- `analyze.py` para gerar tabelas LaTeX direto para o artigo
-- Conversão do `requirements.txt` para `pyproject.toml` gerenciado pelo `uv` em modo projeto (`uv init` + `uv add`)
-- Estrutura `src/` com módulos separados (`env.py`, `callbacks.py`, `metrics.py`)
+**Quanto perde no máximo se a sessão cair?** No perfil `full` salvamos 5 checkpoints uniformes em 500k timesteps, então uma queda perde **no máximo 100k timesteps de progresso** (~30 min de PPO ou A2C, ~1h de DQN).
+
+Para perder ainda menos, edite `PROFILES["full"]["n_checkpoints"]` em `src/config.py` (ex: 10 → checkpoint a cada 50k timesteps).
+
+## TensorBoard ao vivo
+
+Em outro terminal, com o venv ativo:
+```bash
+tensorboard --logdir mario_drl_results/tensorboard
+```
+Abra `http://localhost:6006` no navegador. Acompanhe as curvas de recompensa e loss enquanto os treinos rodam.
+
+## Estimativa de tempo (RTX 3060/3070, perfil full)
+
+| Algoritmo | n_envs | Tempo / treino | × 12 treinos |
+|---|---|---|---|
+| DQN | 1 | ~2-3h | ~30h |
+| PPO | 8 | ~1-1.5h | ~15h |
+| A2C | 16 | ~1-1.5h | ~15h |
+| **Total** | | | **~60h** |
+
+Dispare em sessões fatiadas com `--algos` ou `--stages` — o resume retoma de onde parou.
+
+## Workflow recomendado
+
+1. **Validação:** `python scripts/train.py --profile smoke`
+2. **Treino real fatiado por algoritmo (sessões paralelas em terminais):**
+   - Term 1: `python scripts/train.py --profile full --algos DQN`
+   - Term 2: `python scripts/train.py --profile full --algos PPO`
+   - Term 3: `python scripts/train.py --profile full --algos A2C`
+3. **Análise parcial enquanto ainda treina:** `python scripts/analyze.py` (funciona com dados parciais)
+4. **Análise final + GIFs:** `python scripts/analyze.py && python scripts/render.py all`
+5. **Exploração no notebook:** `jupyter lab notebooks/99_analysis_explore.ipynb`
+
+## Solução de problemas
+
+**`OverflowError: Python integer 1024 out of bounds for uint8`**
+→ Está em Python 3.12+. Use 3.10 ou 3.11.
+
+**`apply_api_compatibility` é argumento desconhecido**
+→ Versão errada do `gym-super-mario-bros`. Reinstale com `pip install gym-super-mario-bros==7.4.0`.
+
+**Crash de RAM aos 10k timesteps no DQN**
+→ Buffer de replay (~2.8 GB). Reduza `buffer_size` no `HPARAMS["DQN"]` para 50_000 em `src/config.py`.
+
+**`No module named 'src'`**
+→ Rode a partir da raiz do projeto: `cd /caminho/do/projeto && python scripts/train.py`.

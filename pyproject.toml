@@ -1,0 +1,41 @@
+[project]
+name = "mario-drl"
+version = "0.1.0"
+description = "Deep Reinforcement Learning aplicado ao Super Mario Bros (DQN vs PPO vs A2C) — PPGCC UNESP"
+requires-python = ">=3.10,<3.12"
+authors = [{ name = "Murilo" }]
+
+dependencies = [
+    "numpy<2.0",
+    "pandas>=2.0",
+    "scipy>=1.10",
+    "matplotlib>=3.7",
+    "seaborn>=0.13",
+    "tqdm>=4.65",
+    "torch>=2.0,<2.5",
+    "tensorboard>=2.14",
+    "gym==0.26.2",
+    "gymnasium==0.29.1",
+    "shimmy==1.3.0",
+    "stable-baselines3==2.3.2",
+    "gym-super-mario-bros==7.4.0",
+    "nes-py==8.2.1",
+    "imageio>=2.30",
+    "opencv-python-headless>=4.8",
+]
+
+[project.optional-dependencies]
+notebook = ["ipykernel>=6.25", "jupyterlab>=4.0"]
+
+[project.scripts]
+mario-train   = "scripts.train:main"
+mario-analyze = "scripts.analyze:main"
+mario-render  = "scripts.render:main"
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*", "scripts*"]

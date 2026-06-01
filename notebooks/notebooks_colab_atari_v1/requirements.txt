@@ -1,0 +1,27 @@
+# Atari ALE — stack moderna gymnasium-nativa.
+# Compatível com Python 3.10, 3.11, 3.12 (Colab Pro default).
+# Zero hacks: sem gym legado, sem shimmy, sem condacolab, sem downgrade.
+
+# --- RL core ---
+gymnasium>=1.0.0
+ale-py>=0.10.0                 # ROMs Atari empacotadas — sem AutoROM
+stable-baselines3>=2.4.0
+torch>=2.4.0
+
+# --- NumPy 2.x compatível ---
+numpy>=1.26,<3.0
+scipy>=1.11
+
+# --- Análise + visualização ---
+pandas>=2.0
+matplotlib>=3.7
+seaborn>=0.13
+imageio[ffmpeg]>=2.31
+opencv-python-headless>=4.8   # headless: sem GTK/X11 (Colab/CI)
+
+# --- Tooling ---
+tensorboard>=2.14
+tqdm>=4.66
+rich>=13.0                     # progress_bar=True no SB3.learn()
+psutil>=5.9                    # monitor de RAM (opcional)
+nbformat>=5.10                 # só se for re-gerar os notebooks

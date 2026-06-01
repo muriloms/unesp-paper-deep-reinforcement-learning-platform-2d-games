@@ -1,0 +1,35 @@
+# Stack moderna gymnasium-nativa — sem condacolab, sem shimmy, sem gym legado.
+# Compatível com Python 3.10, 3.11, 3.12 (Colab Pro default = 3.11+).
+#
+# Os 2 forks gymnasium-mario instalam via git+subdirectory (não estão no PyPI).
+# A primeira execução do notebook compila nes-py (binding C++ do emulador NES) —
+# requer cmake + g++ disponíveis (apt install no Colab).
+
+# --- Mario environments (gymnasium-native forks) ---
+# Mantêm o info dict completo: x_pos, y_pos, life, score, flag_get, time, world,
+# stage, status, coins — drop-in com a API antiga, sem shimmy/gym legado.
+git+https://github.com/tooichitake/gymnasium-mario.git@main#subdirectory=nes-py
+git+https://github.com/tooichitake/gymnasium-mario.git@main#subdirectory=gymnasium-super-mario-bros
+
+# --- Gymnasium + RL stack ---
+gymnasium>=1.0.0
+stable-baselines3>=2.4.0
+torch>=2.4.0
+
+# --- NumPy 2.x compatível ---
+numpy>=1.26,<3.0
+scipy>=1.11
+
+# --- Análise + visualização ---
+pandas>=2.0
+matplotlib>=3.7
+seaborn>=0.13
+imageio[ffmpeg]>=2.31
+opencv-python-headless>=4.8     # headless: sem GTK/X11 (Colab/CI)
+
+# --- Tooling ---
+tensorboard>=2.14
+tqdm>=4.66
+rich>=13.0                       # progress_bar=True no SB3.learn()
+psutil>=5.9                       # monitor de RAM (opcional)
+nbformat>=5.10                    # só se for re-gerar os notebooks
