@@ -19,25 +19,67 @@ from .config import STAGE_LENGTH, STAGES, LOGS_DIR, METRICS_DIR
 # ============================================================================
 # CARREGAMENTO DOS LOGS
 # ============================================================================
-def load_all_logs() -> pd.DataFrame:
+def _parse_log_name(stem: str):
     """
-    Concatena todos os CSVs de LOGS_DIR num DataFrame longo com
-    colunas extras [algo, stage, seed].
+    Parseia stem do CSV. Aceita:
+        DQN_stage1-1_seed42             → ("DQN", "1-1", 42, None)
+        PPO_stage4-1_seed42_shape       → ("PPO", "4-1", 42, "shape")
+        A2C_stage1-1_seed42_eval        → ("A2C", "1-1", 42, "eval")
+        PPO_stage1-1_seed42_shape_eval  → ("PPO", "1-1", 42, "shape_eval")
+    Retorna (algo, stage, seed, suffix_str_or_None) ou None se não bate.
+    """
+    import re
+    m = re.match(r"^(DQN|PPO|A2C)_stage([^_]+)_seed(\d+)(?:_(.+))?$", stem)
+    if not m:
+        return None
+    algo, stage, seed_str, suffix = m.groups()
+    return algo, stage, int(seed_str), suffix
+
+
+def load_all_logs(suffix_filter: str | None = "exclude_eval") -> pd.DataFrame:
+    """
+    Concatena todos os CSVs de LOGS_DIR num DataFrame longo com [algo, stage, seed].
+
+    Args:
+        suffix_filter: filtro de sufixo no nome do CSV.
+            None              → carrega tudo (incluindo _shape, _eval, etc).
+            "exclude_eval"    → ignora *_eval.csv (default).
+            "eval_only"       → carrega APENAS *_eval.csv (CSVs com deaths corrigidos).
+            "shape_only"      → carrega APENAS modelos com sufixo "shape" (qualquer variante).
+            "no_suffix"       → carrega APENAS os baseline (sem nenhum sufixo).
+            "<custom>"        → carrega APENAS sufixo exato (ex: "shape", "eval").
     """
     rows = []
     for csv_path in sorted(LOGS_DIR.glob("*.csv")):
-        name = csv_path.stem
-        try:
-            algo, stage_part, seed_part = name.split("_")
-            stage = stage_part.replace("stage", "")
-            seed = int(seed_part.replace("seed", ""))
-        except ValueError:
+        parsed = _parse_log_name(csv_path.stem)
+        if parsed is None:
             print(f"  ⚠ ignorando {csv_path.name} (nome fora do padrão)")
             continue
+        algo, stage, seed, suffix = parsed
+
+        # Filtra conforme suffix_filter
+        if suffix_filter == "exclude_eval":
+            if suffix and "eval" in suffix:
+                continue
+        elif suffix_filter == "eval_only":
+            if not suffix or "eval" not in suffix:
+                continue
+        elif suffix_filter == "shape_only":
+            if not suffix or "shape" not in suffix:
+                continue
+        elif suffix_filter == "no_suffix":
+            if suffix is not None:
+                continue
+        elif suffix_filter is not None and suffix_filter not in ("exclude_eval",):
+            # Filtro exato (string específica)
+            if suffix != suffix_filter:
+                continue
+
         df = pd.read_csv(csv_path)
         df["algo"] = algo
         df["stage"] = stage
         df["seed"] = seed
+        df["suffix"] = suffix or ""
         rows.append(df)
     if not rows:
         return pd.DataFrame()
@@ -212,33 +254,76 @@ def mannwhitney_between_algos(metrics_g1: pd.DataFrame, metric: str = "R_final")
 # ============================================================================
 # PIPELINE COMPLETO — gera todos os CSVs
 # ============================================================================
-def run_full_analysis(verbose: bool = True) -> dict:
+def run_full_analysis(
+    verbose: bool = True,
+    suffix_filter: str | None = "exclude_eval",
+    use_eval_for_group2: bool = False,
+) -> dict:
     """
     Carrega logs, calcula todas as métricas e salva CSVs em METRICS_DIR.
 
+    Args:
+        suffix_filter: filtro principal (ver `load_all_logs()`).
+            "exclude_eval" (default) → CSVs do treino, com trajetória completa.
+            "eval_only"              → APENAS CSVs *_eval.csv (1 timestep só).
+            "shape_only"             → APENAS modelos com sufixo "shape".
+
+        use_eval_for_group2: se True, Grupo II e estatísticas relacionadas usam
+            CSVs *_eval.csv (com deaths corrigidos), enquanto Grupo I e curvas
+            de aprendizado continuam usando os CSVs originais do treino
+            (que têm trajetória completa). Solução correta para análise final:
+              - Grupo I e curvas precisam de trajetória (50+ pontos)
+              - Grupo II só usa a última avaliação, então faz sentido pegar
+                a versão com deaths corrigido.
+
     Returns:
-        dict com os DataFrames principais (df_all, metrics_g1, metrics_g2, ...)
+        dict com os DataFrames principais.
     """
     METRICS_DIR.mkdir(parents=True, exist_ok=True)
 
-    df_all = load_all_logs()
+    # DataFrame principal — trajetória do treino (para curvas e Grupo I)
+    df_all = load_all_logs(suffix_filter=suffix_filter)
     if df_all.empty:
         if verbose:
             print("Nenhum log encontrado em", LOGS_DIR)
+            print(f"  (filtro de sufixo: {suffix_filter!r})")
         return {"df_all": df_all}
 
     if verbose:
         n_cfg = df_all.groupby(["algo", "stage", "seed"]).ngroups
-        print(f"Avaliações carregadas: {len(df_all):,}  ({n_cfg} configurações distintas)")
+        suf_info = ""
+        if "suffix" in df_all.columns:
+            suffixes = sorted(set(s for s in df_all["suffix"].unique() if s))
+            if suffixes:
+                suf_info = f"  [sufixos: {suffixes}]"
+        print(f"Avaliações carregadas (trajetória): {len(df_all):,}  "
+              f"({n_cfg} configurações){suf_info}")
 
-    # Grupo I
+    # Grupo I — sempre usa trajetória completa
     metrics_g1 = compute_group1_metrics(df_all)
     metrics_g1.to_csv(METRICS_DIR / "group1_per_seed.csv", index=False)
     metrics_g1_agg = aggregate_group1(metrics_g1)
     metrics_g1_agg.to_csv(METRICS_DIR / "group1_aggregated.csv", index=False)
 
-    # Grupo II
-    metrics_g2 = compute_group2_metrics(df_all)
+    # Grupo II — opcionalmente usa CSVs *_eval.csv (deaths corrigidos)
+    if use_eval_for_group2:
+        df_eval = load_all_logs(suffix_filter="eval_only")
+        if df_eval.empty:
+            if verbose:
+                print("⚠ use_eval_for_group2=True mas nenhum *_eval.csv encontrado.")
+                print("  Rode `python scripts/recompute_metrics.py` antes.")
+                print("  Caindo no fallback: usando trajetória para Grupo II também.")
+            df_for_g2 = df_all
+        else:
+            if verbose:
+                n_cfg_eval = df_eval.groupby(["algo", "stage", "seed"]).ngroups
+                print(f"Avaliações carregadas (eval corrigido): {len(df_eval):,}  "
+                      f"({n_cfg_eval} configurações)")
+            df_for_g2 = df_eval
+    else:
+        df_for_g2 = df_all
+
+    metrics_g2 = compute_group2_metrics(df_for_g2)
     metrics_g2.to_csv(METRICS_DIR / "group2_per_seed.csv", index=False)
     metrics_g2_agg = aggregate_group2(metrics_g2)
     metrics_g2_agg.to_csv(METRICS_DIR / "group2_aggregated.csv", index=False)

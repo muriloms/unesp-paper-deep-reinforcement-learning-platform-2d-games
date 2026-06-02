@@ -21,3 +21,699 @@ Output em       : /home/murilo/Documents/academico/unesp_cc/repos/unesp-paper-de
 ======================================================================
 [1/12] A2C | stage 1-1 | seed 42
 ======================================================================
+
+► [A2C_stage1-1_seed42] treinando (500,000 timesteps restantes, n_envs=16)
+  [eval @  10,000] reward= +231.00± 0.00  completion=0%  max_x_avg=296
+  [eval @  20,000] reward= +231.00± 0.00  completion=0%  max_x_avg=296
+  [eval @  30,000] reward= +231.00± 0.00  completion=0%  max_x_avg=296
+  [eval @  40,000] reward= +231.00± 0.00  completion=0%  max_x_avg=296
+  [eval @  50,000] reward= +231.00± 0.00  completion=0%  max_x_avg=296
+  [eval @  60,000] reward= +231.00± 0.00  completion=0%  max_x_avg=296
+  [eval @  70,000] reward=  -21.00± 0.00  completion=0%  max_x_avg=434
+  [eval @  80,000] reward= +231.00± 0.00  completion=0%  max_x_avg=296
+  [eval @  90,000] reward= +227.00± 0.00  completion=0%  max_x_avg=292
+  [eval @ 100,000] reward= +237.00± 0.00  completion=0%  max_x_avg=301
+  [eval @ 110,000] reward= +252.00± 0.00  completion=0%  max_x_avg=315
+  [eval @ 120,000] reward= +252.00± 0.00  completion=0%  max_x_avg=315
+  [eval @ 130,000] reward= +139.00± 0.00  completion=0%  max_x_avg=596
+  [eval @ 140,000] reward=  -21.00± 0.00  completion=0%  max_x_avg=434
+  [eval @ 150,000] reward=  -21.00± 0.00  completion=0%  max_x_avg=434
+  [eval @ 160,000] reward= +250.00± 0.00  completion=0%  max_x_avg=314
+  [eval @ 170,000] reward= +250.00± 0.00  completion=0%  max_x_avg=314
+  [eval @ 180,000] reward= +250.00± 0.00  completion=0%  max_x_avg=314
+  [eval @ 190,000] reward= +250.00± 0.00  completion=0%  max_x_avg=314
+  [eval @ 200,000] reward= +250.00± 0.00  completion=0%  max_x_avg=314
+  [eval @ 210,000] reward= +250.00± 0.00  completion=0%  max_x_avg=314
+  [eval @ 220,000] reward= +250.00± 0.00  completion=0%  max_x_avg=314
+  [eval @ 230,000] reward= +250.00± 0.00  completion=0%  max_x_avg=314
+  [eval @ 240,000] reward= +250.00± 0.00  completion=0%  max_x_avg=314
+  [eval @ 250,000] reward= +250.00± 0.00  completion=0%  max_x_avg=314
+  [eval @ 260,000] reward= +250.00± 0.00  completion=0%  max_x_avg=314
+  [eval @ 270,000] reward= +250.00± 0.00  completion=0%  max_x_avg=314
+  [eval @ 280,000] reward= +250.00± 0.00  completion=0%  max_x_avg=314
+  [eval @ 290,000] reward= +250.00± 0.00  completion=0%  max_x_avg=314
+  [eval @ 300,000] reward= +250.00± 0.00  completion=0%  max_x_avg=314
+  [eval @ 310,000] reward= +250.00± 0.00  completion=0%  max_x_avg=314
+  [eval @ 320,000] reward= +250.00± 0.00  completion=0%  max_x_avg=314
+  [eval @ 330,000] reward= +250.00± 0.00  completion=0%  max_x_avg=314
+  [eval @ 340,000] reward= +250.00± 0.00  completion=0%  max_x_avg=314
+  [eval @ 350,000] reward= +250.00± 0.00  completion=0%  max_x_avg=314
+  [eval @ 360,000] reward= +250.00± 0.00  completion=0%  max_x_avg=314
+  [eval @ 370,000] reward= +250.00± 0.00  completion=0%  max_x_avg=314
+  [eval @ 380,000] reward= +250.00± 0.00  completion=0%  max_x_avg=314
+  [eval @ 390,000] reward= +250.00± 0.00  completion=0%  max_x_avg=314
+  [eval @ 400,000] reward= +250.00± 0.00  completion=0%  max_x_avg=314
+  [eval @ 410,000] reward= +250.00± 0.00  completion=0%  max_x_avg=314
+  [eval @ 420,000] reward= +250.00± 0.00  completion=0%  max_x_avg=314
+  [eval @ 430,000] reward= +250.00± 0.00  completion=0%  max_x_avg=314
+  [eval @ 440,000] reward= +250.00± 0.00  completion=0%  max_x_avg=314
+  [eval @ 450,000] reward= +250.00± 0.00  completion=0%  max_x_avg=314
+  [eval @ 460,000] reward= +250.00± 0.00  completion=0%  max_x_avg=314
+  [eval @ 470,000] reward= +250.00± 0.00  completion=0%  max_x_avg=314
+  [eval @ 480,000] reward= +250.00± 0.00  completion=0%  max_x_avg=314
+  [eval @ 490,000] reward= +250.00± 0.00  completion=0%  max_x_avg=314
+  [eval @ 500,000] reward=  -21.00± 0.00  completion=0%  max_x_avg=434
+ 100% ━━━━━━━━━━━━━━━━━━━━━━━━━━ 500,000/500,000  [ 0:23:30 < 0:00:00 , ? it/s ]
+✓ [A2C_stage1-1_seed42] concluído em 23.5 min — modelo: /home/murilo/Documents/academico/unesp_cc/repos/unesp-paper-deep-reinforcement-learning-platform-2d-games/mario_drl_results/models/A2C_stage1-1_seed42.zip
+
+======================================================================
+[2/12] A2C | stage 1-1 | seed 123
+======================================================================
+
+► [A2C_stage1-1_seed123] treinando (500,000 timesteps restantes, n_envs=16)
+  [eval @  10,000] reward= +231.00± 0.00  completion=0%  max_x_avg=296
+  [eval @  20,000] reward= +231.00± 0.00  completion=0%  max_x_avg=296
+  [eval @  30,000] reward= +231.00± 0.00  completion=0%  max_x_avg=296
+  [eval @  40,000] reward= +231.00± 0.00  completion=0%  max_x_avg=296
+  [eval @  50,000] reward= +231.00± 0.00  completion=0%  max_x_avg=296
+  [eval @  60,000] reward= +231.00± 0.00  completion=0%  max_x_avg=296
+  [eval @  70,000] reward= +231.00± 0.00  completion=0%  max_x_avg=296
+  [eval @  80,000] reward= +250.00± 0.00  completion=0%  max_x_avg=314
+  [eval @  90,000] reward=  -21.00± 0.00  completion=0%  max_x_avg=434
+  [eval @ 100,000] reward= +231.00± 0.00  completion=0%  max_x_avg=296
+  [eval @ 110,000] reward=  -21.00± 0.00  completion=0%  max_x_avg=434
+  [eval @ 120,000] reward=  -21.00± 0.00  completion=0%  max_x_avg=434
+  [eval @ 130,000] reward=  -21.00± 0.00  completion=0%  max_x_avg=434
+  [eval @ 140,000] reward=  -21.00± 0.00  completion=0%  max_x_avg=434
+  [eval @ 150,000] reward=  -21.00± 0.00  completion=0%  max_x_avg=434
+  [eval @ 160,000] reward=  -21.00± 0.00  completion=0%  max_x_avg=434
+  [eval @ 170,000] reward=  -21.00± 0.00  completion=0%  max_x_avg=434
+  [eval @ 180,000] reward=  -21.00± 0.00  completion=0%  max_x_avg=434
+  [eval @ 190,000] reward=  -21.00± 0.00  completion=0%  max_x_avg=434
+  [eval @ 200,000] reward= +240.00± 0.00  completion=0%  max_x_avg=305
+  [eval @ 210,000] reward= +250.00± 0.00  completion=0%  max_x_avg=314
+  [eval @ 220,000] reward= +250.00± 0.00  completion=0%  max_x_avg=314
+  [eval @ 230,000] reward= +250.00± 0.00  completion=0%  max_x_avg=314
+  [eval @ 240,000] reward= +250.00± 0.00  completion=0%  max_x_avg=314
+  [eval @ 250,000] reward=  -21.00± 0.00  completion=0%  max_x_avg=435
+  [eval @ 260,000] reward=  -21.00± 0.00  completion=0%  max_x_avg=435
+  [eval @ 270,000] reward= +250.00± 0.00  completion=0%  max_x_avg=314
+  [eval @ 280,000] reward=  -21.00± 0.00  completion=0%  max_x_avg=435
+  [eval @ 290,000] reward=  -21.00± 0.00  completion=0%  max_x_avg=434
+  [eval @ 300,000] reward=  -21.00± 0.00  completion=0%  max_x_avg=435
+  [eval @ 310,000] reward=  -21.00± 0.00  completion=0%  max_x_avg=435
+  [eval @ 320,000] reward=  -21.00± 0.00  completion=0%  max_x_avg=434
+  [eval @ 330,000] reward=  -21.00± 0.00  completion=0%  max_x_avg=434
+  [eval @ 340,000] reward=  -21.00± 0.00  completion=0%  max_x_avg=434
+  [eval @ 350,000] reward= +250.00± 0.00  completion=0%  max_x_avg=314
+  [eval @ 360,000] reward=  -21.00± 0.00  completion=0%  max_x_avg=434
+  [eval @ 370,000] reward=  -21.00± 0.00  completion=0%  max_x_avg=434
+  [eval @ 380,000] reward=  -21.00± 0.00  completion=0%  max_x_avg=436
+  [eval @ 390,000] reward=  -21.00± 0.00  completion=0%  max_x_avg=434
+  [eval @ 400,000] reward=  -21.00± 0.00  completion=0%  max_x_avg=435
+  [eval @ 410,000] reward=  -21.00± 0.00  completion=0%  max_x_avg=434
+  [eval @ 420,000] reward=  -21.00± 0.00  completion=0%  max_x_avg=434
+  [eval @ 430,000] reward=  -21.00± 0.00  completion=0%  max_x_avg=434
+  [eval @ 440,000] reward=  -21.00± 0.00  completion=0%  max_x_avg=436
+  [eval @ 450,000] reward=  -21.00± 0.00  completion=0%  max_x_avg=434
+  [eval @ 460,000] reward=  -21.00± 0.00  completion=0%  max_x_avg=436
+  [eval @ 470,000] reward=  -21.00± 0.00  completion=0%  max_x_avg=434
+  [eval @ 480,000] reward=  -21.00± 0.00  completion=0%  max_x_avg=434
+  [eval @ 490,000] reward=  -21.00± 0.00  completion=0%  max_x_avg=434
+  [eval @ 500,000] reward=  -21.00± 0.00  completion=0%  max_x_avg=434
+ 100% ━━━━━━━━━━━━━━━━━━━━━━━━━━ 500,000/500,000  [ 1:00:38 < 0:00:00 , ? it/s ]
+✓ [A2C_stage1-1_seed123] concluído em 60.6 min — modelo: /home/murilo/Documents/academico/unesp_cc/repos/unesp-paper-deep-reinforcement-learning-platform-2d-games/mario_drl_results/models/A2C_stage1-1_seed123.zip
+
+======================================================================
+[3/12] A2C | stage 1-1 | seed 2024
+======================================================================
+
+► [A2C_stage1-1_seed2024] treinando (500,000 timesteps restantes, n_envs=16)
+  [eval @  10,000] reward= +252.00± 0.00  completion=0%  max_x_avg=315
+  [eval @  20,000] reward= +252.00± 0.00  completion=0%  max_x_avg=315
+  [eval @  30,000] reward= +252.00± 0.00  completion=0%  max_x_avg=315
+  [eval @  40,000] reward= +250.00± 0.00  completion=0%  max_x_avg=314
+  [eval @  50,000] reward= +231.00± 0.00  completion=0%  max_x_avg=296
+  [eval @  60,000] reward= +231.00± 0.00  completion=0%  max_x_avg=296
+  [eval @  70,000] reward= +231.00± 0.00  completion=0%  max_x_avg=296
+  [eval @  80,000] reward= +231.00± 0.00  completion=0%  max_x_avg=296
+  [eval @  90,000] reward= +231.00± 0.00  completion=0%  max_x_avg=296
+  [eval @ 100,000] reward=  -21.00± 0.00  completion=0%  max_x_avg=434
+  [eval @ 110,000] reward=  -21.00± 0.00  completion=0%  max_x_avg=434
+  [eval @ 120,000] reward= +231.00± 0.00  completion=0%  max_x_avg=296
+  [eval @ 130,000] reward= +232.00± 0.00  completion=0%  max_x_avg=297
+  [eval @ 140,000] reward= +232.00± 0.00  completion=0%  max_x_avg=297
+  [eval @ 150,000] reward= +248.00± 0.00  completion=0%  max_x_avg=312
+  [eval @ 160,000] reward= +247.00± 0.00  completion=0%  max_x_avg=311
+  [eval @ 170,000] reward= +252.00± 0.00  completion=0%  max_x_avg=315
+  [eval @ 180,000] reward= +252.00± 0.00  completion=0%  max_x_avg=315
+  [eval @ 190,000] reward= +252.00± 0.00  completion=0%  max_x_avg=315
+  [eval @ 200,000] reward= +252.00± 0.00  completion=0%  max_x_avg=315
+  [eval @ 210,000] reward= +252.00± 0.00  completion=0%  max_x_avg=315
+  [eval @ 220,000] reward= +252.00± 0.00  completion=0%  max_x_avg=315
+  [eval @ 230,000] reward= +252.00± 0.00  completion=0%  max_x_avg=315
+  [eval @ 240,000] reward= +252.00± 0.00  completion=0%  max_x_avg=315
+  [eval @ 250,000] reward= +252.00± 0.00  completion=0%  max_x_avg=315
+  [eval @ 260,000] reward= +252.00± 0.00  completion=0%  max_x_avg=315
+  [eval @ 270,000] reward= +252.00± 0.00  completion=0%  max_x_avg=315
+  [eval @ 280,000] reward= +252.00± 0.00  completion=0%  max_x_avg=315
+  [eval @ 290,000] reward=  -21.00± 0.00  completion=0%  max_x_avg=434
+  [eval @ 300,000] reward= +248.00± 0.00  completion=0%  max_x_avg=312
+  [eval @ 310,000] reward=  -21.00± 0.00  completion=0%  max_x_avg=434
+  [eval @ 320,000] reward=  -21.00± 0.00  completion=0%  max_x_avg=434
+  [eval @ 330,000] reward=  -21.00± 0.00  completion=0%  max_x_avg=434
+  [eval @ 340,000] reward=  -21.00± 0.00  completion=0%  max_x_avg=434
+  [eval @ 350,000] reward= +237.00± 0.00  completion=0%  max_x_avg=302
+  [eval @ 360,000] reward=  -21.00± 0.00  completion=0%  max_x_avg=434
+  [eval @ 370,000] reward=  -21.00± 0.00  completion=0%  max_x_avg=434
+  [eval @ 380,000] reward=  -21.00± 0.00  completion=0%  max_x_avg=434
+  [eval @ 390,000] reward=  -21.00± 0.00  completion=0%  max_x_avg=434
+  [eval @ 400,000] reward=  -21.00± 0.00  completion=0%  max_x_avg=434
+  [eval @ 410,000] reward= +250.00± 0.00  completion=0%  max_x_avg=314
+  [eval @ 420,000] reward= +250.00± 0.00  completion=0%  max_x_avg=314
+  [eval @ 430,000] reward= +250.00± 0.00  completion=0%  max_x_avg=314
+  [eval @ 440,000] reward= +250.00± 0.00  completion=0%  max_x_avg=314
+  [eval @ 450,000] reward= +250.00± 0.00  completion=0%  max_x_avg=314
+  [eval @ 460,000] reward= +250.00± 0.00  completion=0%  max_x_avg=314
+  [eval @ 470,000] reward= +250.00± 0.00  completion=0%  max_x_avg=314
+  [eval @ 480,000] reward= +250.00± 0.00  completion=0%  max_x_avg=314
+  [eval @ 490,000] reward= +250.00± 0.00  completion=0%  max_x_avg=314
+  [eval @ 500,000] reward= +250.00± 0.00  completion=0%  max_x_avg=314
+ 100% ━━━━━━━━━━━━━━━━━━━━━━━━ 500,000/500,000  [ 0:31:49 < 0:00:00 , 506 it/s ]
+✓ [A2C_stage1-1_seed2024] concluído em 31.8 min — modelo: /home/murilo/Documents/academico/unesp_cc/repos/unesp-paper-deep-reinforcement-learning-platform-2d-games/mario_drl_results/models/A2C_stage1-1_seed2024.zip
+
+======================================================================
+[4/12] A2C | stage 1-2 | seed 42
+======================================================================
+
+► [A2C_stage1-2_seed42] treinando (500,000 timesteps restantes, n_envs=16)
+  [eval @  10,000] reward= +137.00± 0.00  completion=0%  max_x_avg=198
+  [eval @  20,000] reward= +120.00± 0.00  completion=0%  max_x_avg=180
+  [eval @  30,000] reward= +137.00± 0.00  completion=0%  max_x_avg=198
+  [eval @  40,000] reward= -197.00± 0.00  completion=0%  max_x_avg=258
+  [eval @  50,000] reward= +137.00± 0.00  completion=0%  max_x_avg=198
+  [eval @  60,000] reward= -101.00± 0.00  completion=0%  max_x_avg=356
+  [eval @  70,000] reward= -197.00± 0.00  completion=0%  max_x_avg=258
+  [eval @  80,000] reward= +120.00± 0.00  completion=0%  max_x_avg=180
+  [eval @  90,000] reward= -197.00± 0.00  completion=0%  max_x_avg=258
+  [eval @ 100,000] reward= +137.00± 0.00  completion=0%  max_x_avg=198
+  [eval @ 110,000] reward= -197.00± 0.00  completion=0%  max_x_avg=258
+  [eval @ 120,000] reward= -197.00± 0.00  completion=0%  max_x_avg=258
+  [eval @ 130,000] reward= +120.00± 0.00  completion=0%  max_x_avg=180
+  [eval @ 140,000] reward= +133.00± 0.00  completion=0%  max_x_avg=194
+  [eval @ 150,000] reward=  +27.00± 0.00  completion=0%  max_x_avg=482
+  [eval @ 160,000] reward= +137.00± 0.00  completion=0%  max_x_avg=198
+  [eval @ 170,000] reward= -197.00± 0.00  completion=0%  max_x_avg=258
+  [eval @ 180,000] reward= +133.00± 0.00  completion=0%  max_x_avg=194
+  [eval @ 190,000] reward= +111.00± 0.00  completion=0%  max_x_avg=173
+  [eval @ 200,000] reward= +120.00± 0.00  completion=0%  max_x_avg=180
+  [eval @ 210,000] reward= -197.00± 0.00  completion=0%  max_x_avg=258
+  [eval @ 220,000] reward= +137.00± 0.00  completion=0%  max_x_avg=198
+  [eval @ 230,000] reward= +120.00± 0.00  completion=0%  max_x_avg=180
+  [eval @ 240,000] reward= +122.00± 0.00  completion=0%  max_x_avg=182
+  [eval @ 250,000] reward= +120.00± 0.00  completion=0%  max_x_avg=180
+  [eval @ 260,000] reward= -197.00± 0.00  completion=0%  max_x_avg=258
+  [eval @ 270,000] reward= -133.00± 0.00  completion=0%  max_x_avg=323
+  [eval @ 280,000] reward= +120.00± 0.00  completion=0%  max_x_avg=180
+  [eval @ 290,000] reward= -165.00± 0.00  completion=0%  max_x_avg=290
+  [eval @ 300,000] reward= +193.00± 0.00  completion=0%  max_x_avg=258
+  [eval @ 310,000] reward= -197.00± 0.00  completion=0%  max_x_avg=258
+  [eval @ 320,000] reward= -101.00± 0.00  completion=0%  max_x_avg=354
+  [eval @ 330,000] reward= -165.00± 0.00  completion=0%  max_x_avg=290
+  [eval @ 340,000] reward= -133.00± 0.00  completion=0%  max_x_avg=323
+  [eval @ 350,000] reward= +107.00± 0.00  completion=0%  max_x_avg=167
+  [eval @ 360,000] reward= -133.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 370,000] reward= +120.00± 0.00  completion=0%  max_x_avg=180
+  [eval @ 380,000] reward= +194.00± 0.00  completion=0%  max_x_avg=258
+  [eval @ 390,000] reward= +120.00± 0.00  completion=0%  max_x_avg=180
+  [eval @ 400,000] reward= -133.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 410,000] reward= -101.00± 0.00  completion=0%  max_x_avg=355
+  [eval @ 420,000] reward= -101.00± 0.00  completion=0%  max_x_avg=355
+  [eval @ 430,000] reward= -133.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 440,000] reward= +120.00± 0.00  completion=0%  max_x_avg=180
+  [eval @ 450,000] reward= -165.00± 0.00  completion=0%  max_x_avg=291
+  [eval @ 460,000] reward= -165.00± 0.00  completion=0%  max_x_avg=290
+  [eval @ 470,000] reward= -101.00± 0.00  completion=0%  max_x_avg=354
+  [eval @ 480,000] reward= -101.00± 0.00  completion=0%  max_x_avg=355
+  [eval @ 490,000] reward= -133.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 500,000] reward= +194.00± 0.00  completion=0%  max_x_avg=258
+ 100% ━━━━━━━━━━━━━━━━━━━━━━━━ 500,000/500,000  [ 0:48:53 < 0:00:00 , 597 it/s ]
+✓ [A2C_stage1-2_seed42] concluído em 48.9 min — modelo: /home/murilo/Documents/academico/unesp_cc/repos/unesp-paper-deep-reinforcement-learning-platform-2d-games/mario_drl_results/models/A2C_stage1-2_seed42.zip
+
+======================================================================
+[5/12] A2C | stage 1-2 | seed 123
+======================================================================
+
+► [A2C_stage1-2_seed123] treinando (500,000 timesteps restantes, n_envs=16)
+  [eval @  10,000] reward= +137.00± 0.00  completion=0%  max_x_avg=198
+  [eval @  20,000] reward= +120.00± 0.00  completion=0%  max_x_avg=180
+  [eval @  30,000] reward= +120.00± 0.00  completion=0%  max_x_avg=180
+  [eval @  40,000] reward= +120.00± 0.00  completion=0%  max_x_avg=180
+  [eval @  50,000] reward= +137.00± 0.00  completion=0%  max_x_avg=198
+  [eval @  60,000] reward= +137.00± 0.00  completion=0%  max_x_avg=198
+  [eval @  70,000] reward= +137.00± 0.00  completion=0%  max_x_avg=198
+  [eval @  80,000] reward= +120.00± 0.00  completion=0%  max_x_avg=180
+  [eval @  90,000] reward= +120.00± 0.00  completion=0%  max_x_avg=180
+  [eval @ 100,000] reward= +120.00± 0.00  completion=0%  max_x_avg=180
+  [eval @ 110,000] reward= +133.00± 0.00  completion=0%  max_x_avg=194
+  [eval @ 120,000] reward= -197.00± 0.00  completion=0%  max_x_avg=258
+  [eval @ 130,000] reward= -133.00± 0.00  completion=0%  max_x_avg=323
+  [eval @ 140,000] reward= -197.00± 0.00  completion=0%  max_x_avg=258
+  [eval @ 150,000] reward= -165.00± 0.00  completion=0%  max_x_avg=290
+  [eval @ 160,000] reward= -133.00± 0.00  completion=0%  max_x_avg=323
+  [eval @ 170,000] reward= +120.00± 0.00  completion=0%  max_x_avg=180
+  [eval @ 180,000] reward= -197.00± 0.00  completion=0%  max_x_avg=258
+  [eval @ 190,000] reward= +120.00± 0.00  completion=0%  max_x_avg=180
+  [eval @ 200,000] reward= +120.00± 0.00  completion=0%  max_x_avg=180
+  [eval @ 210,000] reward= +133.00± 0.00  completion=0%  max_x_avg=194
+  [eval @ 220,000] reward= +120.00± 0.00  completion=0%  max_x_avg=180
+  [eval @ 230,000] reward= +120.00± 0.00  completion=0%  max_x_avg=180
+  [eval @ 240,000] reward= -197.00± 0.00  completion=0%  max_x_avg=258
+  [eval @ 250,000] reward= +120.00± 0.00  completion=0%  max_x_avg=180
+  [eval @ 260,000] reward= +133.00± 0.00  completion=0%  max_x_avg=194
+  [eval @ 270,000] reward= -133.00± 0.00  completion=0%  max_x_avg=323
+  [eval @ 280,000] reward= +120.00± 0.00  completion=0%  max_x_avg=180
+  [eval @ 290,000] reward= -165.00± 0.00  completion=0%  max_x_avg=290
+  [eval @ 300,000] reward= -101.00± 0.00  completion=0%  max_x_avg=354
+  [eval @ 310,000] reward= +120.00± 0.00  completion=0%  max_x_avg=180
+  [eval @ 320,000] reward= -165.00± 0.00  completion=0%  max_x_avg=290
+  [eval @ 330,000] reward= -165.00± 0.00  completion=0%  max_x_avg=290
+  [eval @ 340,000] reward= -101.00± 0.00  completion=0%  max_x_avg=354
+  [eval @ 350,000] reward= -165.00± 0.00  completion=0%  max_x_avg=290
+  [eval @ 360,000] reward= -133.00± 0.00  completion=0%  max_x_avg=323
+  [eval @ 370,000] reward= -133.00± 0.00  completion=0%  max_x_avg=323
+  [eval @ 380,000] reward= -101.00± 0.00  completion=0%  max_x_avg=354
+  [eval @ 390,000] reward= -197.00± 0.00  completion=0%  max_x_avg=258
+  [eval @ 400,000] reward= -133.00± 0.00  completion=0%  max_x_avg=323
+  [eval @ 410,000] reward= -133.00± 0.00  completion=0%  max_x_avg=323
+  [eval @ 420,000] reward= -133.00± 0.00  completion=0%  max_x_avg=323
+  [eval @ 430,000] reward= -165.00± 0.00  completion=0%  max_x_avg=290
+  [eval @ 440,000] reward= -165.00± 0.00  completion=0%  max_x_avg=290
+  [eval @ 450,000] reward= -133.00± 0.00  completion=0%  max_x_avg=323
+  [eval @ 460,000] reward= +805.00± 0.00  completion=0%  max_x_avg=891
+  [eval @ 470,000] reward= +805.00± 0.00  completion=0%  max_x_avg=891
+  [eval @ 480,000] reward= -101.00± 0.00  completion=0%  max_x_avg=354
+  [eval @ 490,000] reward= +788.00± 0.00  completion=0%  max_x_avg=872
+  [eval @ 500,000] reward= -165.00± 0.00  completion=0%  max_x_avg=290
+ 100% ━━━━━━━━━━━━━━━━━━━━━━━━━━ 500,000/500,000  [ 0:54:28 < 0:00:00 , ? it/s ]
+✓ [A2C_stage1-2_seed123] concluído em 54.5 min — modelo: /home/murilo/Documents/academico/unesp_cc/repos/unesp-paper-deep-reinforcement-learning-platform-2d-games/mario_drl_results/models/A2C_stage1-2_seed123.zip
+
+======================================================================
+[6/12] A2C | stage 1-2 | seed 2024
+======================================================================
+
+► [A2C_stage1-2_seed2024] treinando (500,000 timesteps restantes, n_envs=16)
+  [eval @  10,000] reward= -165.00± 0.00  completion=0%  max_x_avg=290
+  [eval @  20,000] reward= +137.00± 0.00  completion=0%  max_x_avg=198
+  [eval @  30,000] reward= +120.00± 0.00  completion=0%  max_x_avg=180
+  [eval @  40,000] reward= -165.00± 0.00  completion=0%  max_x_avg=291
+  [eval @  50,000] reward= -197.00± 0.00  completion=0%  max_x_avg=258
+  [eval @  60,000] reward= -165.00± 0.00  completion=0%  max_x_avg=290
+  [eval @  70,000] reward= -165.00± 0.00  completion=0%  max_x_avg=290
+  [eval @  80,000] reward= +120.00± 0.00  completion=0%  max_x_avg=180
+  [eval @  90,000] reward= -165.00± 0.00  completion=0%  max_x_avg=290
+  [eval @ 100,000] reward= -165.00± 0.00  completion=0%  max_x_avg=290
+  [eval @ 110,000] reward= +598.00± 0.00  completion=0%  max_x_avg=672
+  [eval @ 120,000] reward= +120.00± 0.00  completion=0%  max_x_avg=180
+  [eval @ 130,000] reward= -165.00± 0.00  completion=0%  max_x_avg=290
+  [eval @ 140,000] reward= -165.00± 0.00  completion=0%  max_x_avg=290
+  [eval @ 150,000] reward=  +27.00± 0.00  completion=0%  max_x_avg=482
+  [eval @ 160,000] reward= -101.00± 0.00  completion=0%  max_x_avg=355
+  [eval @ 170,000] reward= -101.00± 0.00  completion=0%  max_x_avg=354
+  [eval @ 180,000] reward= +818.00± 0.00  completion=0%  max_x_avg=891
+  [eval @ 190,000] reward= +124.00± 0.00  completion=0%  max_x_avg=186
+  [eval @ 200,000] reward= +833.00± 0.00  completion=0%  max_x_avg=906
+  [eval @ 210,000] reward= -101.00± 0.00  completion=0%  max_x_avg=355
+  [eval @ 220,000] reward= -165.00± 0.00  completion=0%  max_x_avg=290
+  [eval @ 230,000] reward= +833.00± 0.00  completion=0%  max_x_avg=906
+  [eval @ 240,000] reward= +833.00± 0.00  completion=0%  max_x_avg=906
+  [eval @ 250,000] reward= -101.00± 0.00  completion=0%  max_x_avg=355
+  [eval @ 260,000] reward= +833.00± 0.00  completion=0%  max_x_avg=906
+  [eval @ 270,000] reward=  +27.00± 0.00  completion=0%  max_x_avg=482
+  [eval @ 280,000] reward= +862.00± 0.00  completion=0%  max_x_avg=936
+  [eval @ 290,000] reward= +822.00± 0.00  completion=0%  max_x_avg=896
+  [eval @ 300,000] reward= +897.00± 0.00  completion=0%  max_x_avg=972
+  [eval @ 310,000] reward= +833.00± 0.00  completion=0%  max_x_avg=906
+  [eval @ 320,000] reward= +822.00± 0.00  completion=0%  max_x_avg=896
+  [eval @ 330,000] reward= +126.00± 0.00  completion=0%  max_x_avg=188
+  [eval @ 340,000] reward= +124.00± 0.00  completion=0%  max_x_avg=186
+  [eval @ 350,000] reward= +833.00± 0.00  completion=0%  max_x_avg=906
+  [eval @ 360,000] reward= +523.00± 0.00  completion=0%  max_x_avg=978
+  [eval @ 370,000] reward= +134.00± 0.00  completion=0%  max_x_avg=195
+  [eval @ 380,000] reward= +137.00± 0.00  completion=0%  max_x_avg=198
+  [eval @ 390,000] reward= +137.00± 0.00  completion=0%  max_x_avg=198
+  [eval @ 400,000] reward=  +27.00± 0.00  completion=0%  max_x_avg=482
+  [eval @ 410,000] reward= +822.00± 0.00  completion=0%  max_x_avg=896
+  [eval @ 420,000] reward= +833.00± 0.00  completion=0%  max_x_avg=906
+  [eval @ 430,000] reward= +523.00± 0.00  completion=0%  max_x_avg=978
+  [eval @ 440,000] reward= +833.00± 0.00  completion=0%  max_x_avg=906
+  [eval @ 450,000] reward=  +27.00± 0.00  completion=0%  max_x_avg=482
+  [eval @ 460,000] reward= +603.00± 0.00  completion=0%  max_x_avg=672
+  [eval @ 470,000] reward= +833.00± 0.00  completion=0%  max_x_avg=906
+  [eval @ 480,000] reward= +523.00± 0.00  completion=0%  max_x_avg=979
+  [eval @ 490,000] reward= +833.00± 0.00  completion=0%  max_x_avg=906
+  [eval @ 500,000] reward= +523.00± 0.00  completion=0%  max_x_avg=979
+ 100% ━━━━━━━━━━━━━━━━━━━━━━━━━━ 500,000/500,000  [ 0:45:59 < 0:00:00 , ? it/s ]
+✓ [A2C_stage1-2_seed2024] concluído em 46.0 min — modelo: /home/murilo/Documents/academico/unesp_cc/repos/unesp-paper-deep-reinforcement-learning-platform-2d-games/mario_drl_results/models/A2C_stage1-2_seed2024.zip
+
+======================================================================
+[7/12] A2C | stage 4-1 | seed 42
+======================================================================
+
+► [A2C_stage4-1_seed42] treinando (500,000 timesteps restantes, n_envs=16)
+  [eval @  10,000] reward= +225.00± 0.00  completion=0%  max_x_avg=322
+  [eval @  20,000] reward= +223.00± 0.00  completion=0%  max_x_avg=323
+  [eval @  30,000] reward= +225.00± 0.00  completion=0%  max_x_avg=322
+  [eval @  40,000] reward= +225.00± 0.00  completion=0%  max_x_avg=322
+  [eval @  50,000] reward= +226.00± 0.00  completion=0%  max_x_avg=322
+  [eval @  60,000] reward= +226.00± 0.00  completion=0%  max_x_avg=322
+  [eval @  70,000] reward= +226.00± 0.00  completion=0%  max_x_avg=322
+  [eval @  80,000] reward= +226.00± 0.00  completion=0%  max_x_avg=322
+  [eval @  90,000] reward= +226.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 100,000] reward= +226.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 110,000] reward= -415.00± 0.00  completion=0%  max_x_avg=40
+  [eval @ 120,000] reward= +223.00± 0.00  completion=0%  max_x_avg=323
+  [eval @ 130,000] reward= +226.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 140,000] reward= +226.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 150,000] reward= +399.00± 0.00  completion=0%  max_x_avg=466
+  [eval @ 160,000] reward= +226.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 170,000] reward= +472.00± 0.00  completion=0%  max_x_avg=537
+  [eval @ 180,000] reward= +276.00± 0.00  completion=0%  max_x_avg=339
+  [eval @ 190,000] reward= +276.00± 0.00  completion=0%  max_x_avg=339
+  [eval @ 200,000] reward= +211.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 210,000] reward= +225.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 220,000] reward= +225.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 230,000] reward= +225.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 240,000] reward= +225.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 250,000] reward= +225.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 260,000] reward= +225.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 270,000] reward= +225.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 280,000] reward= +225.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 290,000] reward= +225.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 300,000] reward= +225.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 310,000] reward= +225.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 320,000] reward= +225.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 330,000] reward= +225.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 340,000] reward= +225.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 350,000] reward= +225.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 360,000] reward= +225.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 370,000] reward= +225.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 380,000] reward= +225.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 390,000] reward= +225.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 400,000] reward= +225.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 410,000] reward= +225.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 420,000] reward= +225.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 430,000] reward= +225.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 440,000] reward= +225.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 450,000] reward= +209.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 460,000] reward= +399.00± 0.00  completion=0%  max_x_avg=468
+  [eval @ 470,000] reward= +225.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 480,000] reward= +225.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 490,000] reward= +408.00± 0.00  completion=0%  max_x_avg=476
+  [eval @ 500,000] reward= +225.00± 0.00  completion=0%  max_x_avg=322
+ 100% ━━━━━━━━━━━━━━━━━━━━━━━━ 500,000/500,000  [ 0:22:07 < 0:00:00 , 369 it/s ]
+✓ [A2C_stage4-1_seed42] concluído em 22.1 min — modelo: /home/murilo/Documents/academico/unesp_cc/repos/unesp-paper-deep-reinforcement-learning-platform-2d-games/mario_drl_results/models/A2C_stage4-1_seed42.zip
+
+======================================================================
+[8/12] A2C | stage 4-1 | seed 123
+======================================================================
+
+► [A2C_stage4-1_seed123] treinando (500,000 timesteps restantes, n_envs=16)
+  [eval @  10,000] reward= +223.00± 0.00  completion=0%  max_x_avg=323
+  [eval @  20,000] reward= +223.00± 0.00  completion=0%  max_x_avg=323
+  [eval @  30,000] reward= +223.00± 0.00  completion=0%  max_x_avg=323
+  [eval @  40,000] reward= +223.00± 0.00  completion=0%  max_x_avg=323
+  [eval @  50,000] reward= +223.00± 0.00  completion=0%  max_x_avg=323
+  [eval @  60,000] reward= +223.00± 0.00  completion=0%  max_x_avg=323
+  [eval @  70,000] reward= +223.00± 0.00  completion=0%  max_x_avg=323
+  [eval @  80,000] reward= +223.00± 0.00  completion=0%  max_x_avg=323
+  [eval @  90,000] reward= +235.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 100,000] reward= +225.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 110,000] reward= +225.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 120,000] reward= +225.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 130,000] reward= +225.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 140,000] reward= +225.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 150,000] reward= +225.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 160,000] reward= +225.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 170,000] reward= +225.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 180,000] reward= +225.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 190,000] reward= +225.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 200,000] reward= +225.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 210,000] reward= +225.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 220,000] reward= +225.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 230,000] reward= +225.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 240,000] reward= +225.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 250,000] reward= +225.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 260,000] reward= +225.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 270,000] reward= +405.00± 0.00  completion=0%  max_x_avg=472
+  [eval @ 280,000] reward= +225.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 290,000] reward= +225.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 300,000] reward= +225.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 310,000] reward= +225.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 320,000] reward= +225.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 330,000] reward= +225.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 340,000] reward= +225.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 350,000] reward= +225.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 360,000] reward=+1178.00± 0.00  completion=0%  max_x_avg=1265
+  [eval @ 370,000] reward= +225.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 380,000] reward= +225.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 390,000] reward= +225.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 400,000] reward= +225.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 410,000] reward= +225.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 420,000] reward= +469.00± 0.00  completion=0%  max_x_avg=536
+  [eval @ 430,000] reward= +472.00± 0.00  completion=0%  max_x_avg=539
+  [eval @ 440,000] reward= +469.00± 0.00  completion=0%  max_x_avg=536
+  [eval @ 450,000] reward= +471.00± 0.00  completion=0%  max_x_avg=537
+  [eval @ 460,000] reward= +471.00± 0.00  completion=0%  max_x_avg=537
+  [eval @ 470,000] reward= +471.00± 0.00  completion=0%  max_x_avg=537
+  [eval @ 480,000] reward= +471.00± 0.00  completion=0%  max_x_avg=537
+  [eval @ 490,000] reward= +478.00± 0.00  completion=0%  max_x_avg=547
+  [eval @ 500,000] reward= +225.00± 0.00  completion=0%  max_x_avg=322
+ 100% ━━━━━━━━━━━━━━━━━━━━━━━━ 500,000/500,000  [ 0:19:49 < 0:00:00 , 429 it/s ]
+✓ [A2C_stage4-1_seed123] concluído em 19.8 min — modelo: /home/murilo/Documents/academico/unesp_cc/repos/unesp-paper-deep-reinforcement-learning-platform-2d-games/mario_drl_results/models/A2C_stage4-1_seed123.zip
+
+======================================================================
+[9/12] A2C | stage 4-1 | seed 2024
+======================================================================
+
+► [A2C_stage4-1_seed2024] treinando (500,000 timesteps restantes, n_envs=16)
+  [eval @  10,000] reward= +225.00± 0.00  completion=0%  max_x_avg=322
+  [eval @  20,000] reward= +223.00± 0.00  completion=0%  max_x_avg=323
+  [eval @  30,000] reward= +223.00± 0.00  completion=0%  max_x_avg=323
+  [eval @  40,000] reward= +223.00± 0.00  completion=0%  max_x_avg=323
+  [eval @  50,000] reward= +223.00± 0.00  completion=0%  max_x_avg=323
+  [eval @  60,000] reward= +226.00± 0.00  completion=0%  max_x_avg=322
+  [eval @  70,000] reward= +226.00± 0.00  completion=0%  max_x_avg=322
+  [eval @  80,000] reward= +226.00± 0.00  completion=0%  max_x_avg=322
+  [eval @  90,000] reward= +226.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 100,000] reward= +226.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 110,000] reward= +226.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 120,000] reward= +226.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 130,000] reward= +226.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 140,000] reward= +472.00± 0.00  completion=0%  max_x_avg=537
+  [eval @ 150,000] reward= +226.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 160,000] reward= +226.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 170,000] reward= +226.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 180,000] reward= +226.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 190,000] reward= +226.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 200,000] reward= +226.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 210,000] reward= +226.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 220,000] reward= +225.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 230,000] reward= +226.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 240,000] reward= +226.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 250,000] reward=+1226.00± 0.00  completion=0%  max_x_avg=1305
+  [eval @ 260,000] reward= +226.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 270,000] reward= +226.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 280,000] reward= +226.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 290,000] reward= +282.00± 0.00  completion=0%  max_x_avg=345
+  [eval @ 300,000] reward= +226.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 310,000] reward= +276.00± 0.00  completion=0%  max_x_avg=339
+  [eval @ 320,000] reward= +226.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 330,000] reward= +282.00± 0.00  completion=0%  max_x_avg=345
+  [eval @ 340,000] reward= +472.00± 0.00  completion=0%  max_x_avg=537
+  [eval @ 350,000] reward= +226.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 360,000] reward= +226.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 370,000] reward= +226.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 380,000] reward= +226.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 390,000] reward= +226.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 400,000] reward= +226.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 410,000] reward= +226.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 420,000] reward= +226.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 430,000] reward= +226.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 440,000] reward= +472.00± 0.00  completion=0%  max_x_avg=537
+  [eval @ 450,000] reward= +226.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 460,000] reward= +226.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 470,000] reward= +226.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 480,000] reward= +226.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 490,000] reward= +226.00± 0.00  completion=0%  max_x_avg=322
+  [eval @ 500,000] reward= +226.00± 0.00  completion=0%  max_x_avg=322
+ 100% ━━━━━━━━━━━━━━━━━━━━━━━━ 500,000/500,000  [ 0:20:04 < 0:00:00 , 377 it/s ]
+✓ [A2C_stage4-1_seed2024] concluído em 20.1 min — modelo: /home/murilo/Documents/academico/unesp_cc/repos/unesp-paper-deep-reinforcement-learning-platform-2d-games/mario_drl_results/models/A2C_stage4-1_seed2024.zip
+
+======================================================================
+[10/12] A2C | stage 8-1 | seed 42
+======================================================================
+
+► [A2C_stage8-1_seed42] treinando (500,000 timesteps restantes, n_envs=16)
+  [eval @  10,000] reward= +170.00± 0.00  completion=0%  max_x_avg=231
+  [eval @  20,000] reward= +147.00± 0.00  completion=0%  max_x_avg=208
+  [eval @  30,000] reward= +272.00± 0.00  completion=0%  max_x_avg=334
+  [eval @  40,000] reward=  -33.00± 0.00  completion=0%  max_x_avg=40
+  [eval @  50,000] reward= +147.00± 0.00  completion=0%  max_x_avg=208
+  [eval @  60,000] reward= +170.00± 0.00  completion=0%  max_x_avg=231
+  [eval @  70,000] reward= +170.00± 0.00  completion=0%  max_x_avg=231
+  [eval @  80,000] reward= +170.00± 0.00  completion=0%  max_x_avg=231
+  [eval @  90,000] reward= +170.00± 0.00  completion=0%  max_x_avg=231
+  [eval @ 100,000] reward= +170.00± 0.00  completion=0%  max_x_avg=231
+  [eval @ 110,000] reward= +170.00± 0.00  completion=0%  max_x_avg=231
+  [eval @ 120,000] reward= +147.00± 0.00  completion=0%  max_x_avg=208
+  [eval @ 130,000] reward= +147.00± 0.00  completion=0%  max_x_avg=208
+  [eval @ 140,000] reward= +147.00± 0.00  completion=0%  max_x_avg=208
+  [eval @ 150,000] reward= +147.00± 0.00  completion=0%  max_x_avg=208
+  [eval @ 160,000] reward= +147.00± 0.00  completion=0%  max_x_avg=208
+  [eval @ 170,000] reward= +147.00± 0.00  completion=0%  max_x_avg=208
+  [eval @ 180,000] reward= +147.00± 0.00  completion=0%  max_x_avg=208
+  [eval @ 190,000] reward= +147.00± 0.00  completion=0%  max_x_avg=208
+  [eval @ 200,000] reward= +147.00± 0.00  completion=0%  max_x_avg=208
+  [eval @ 210,000] reward= +147.00± 0.00  completion=0%  max_x_avg=208
+  [eval @ 220,000] reward= +147.00± 0.00  completion=0%  max_x_avg=208
+  [eval @ 230,000] reward= +147.00± 0.00  completion=0%  max_x_avg=208
+  [eval @ 240,000] reward= +147.00± 0.00  completion=0%  max_x_avg=208
+  [eval @ 250,000] reward= +147.00± 0.00  completion=0%  max_x_avg=208
+  [eval @ 260,000] reward= +147.00± 0.00  completion=0%  max_x_avg=208
+  [eval @ 270,000] reward= +170.00± 0.00  completion=0%  max_x_avg=231
+  [eval @ 280,000] reward= +170.00± 0.00  completion=0%  max_x_avg=231
+  [eval @ 290,000] reward= +170.00± 0.00  completion=0%  max_x_avg=231
+  [eval @ 300,000] reward= +170.00± 0.00  completion=0%  max_x_avg=231
+  [eval @ 310,000] reward= +162.00± 0.00  completion=0%  max_x_avg=224
+  [eval @ 320,000] reward= +162.00± 0.00  completion=0%  max_x_avg=224
+  [eval @ 330,000] reward= +162.00± 0.00  completion=0%  max_x_avg=224
+  [eval @ 340,000] reward= +274.00± 0.00  completion=0%  max_x_avg=338
+  [eval @ 350,000] reward= +162.00± 0.00  completion=0%  max_x_avg=224
+  [eval @ 360,000] reward= +162.00± 0.00  completion=0%  max_x_avg=224
+  [eval @ 370,000] reward= +162.00± 0.00  completion=0%  max_x_avg=224
+  [eval @ 380,000] reward= +162.00± 0.00  completion=0%  max_x_avg=224
+  [eval @ 390,000] reward= +162.00± 0.00  completion=0%  max_x_avg=224
+  [eval @ 400,000] reward= +162.00± 0.00  completion=0%  max_x_avg=224
+  [eval @ 410,000] reward= +162.00± 0.00  completion=0%  max_x_avg=224
+  [eval @ 420,000] reward= +162.00± 0.00  completion=0%  max_x_avg=224
+  [eval @ 430,000] reward= +162.00± 0.00  completion=0%  max_x_avg=224
+  [eval @ 440,000] reward= +162.00± 0.00  completion=0%  max_x_avg=224
+  [eval @ 450,000] reward= +162.00± 0.00  completion=0%  max_x_avg=224
+  [eval @ 460,000] reward= +162.00± 0.00  completion=0%  max_x_avg=224
+  [eval @ 470,000] reward= +162.00± 0.00  completion=0%  max_x_avg=224
+  [eval @ 480,000] reward= +162.00± 0.00  completion=0%  max_x_avg=224
+  [eval @ 490,000] reward= +162.00± 0.00  completion=0%  max_x_avg=224
+  [eval @ 500,000] reward= +162.00± 0.00  completion=0%  max_x_avg=224
+ 100% ━━━━━━━━━━━━━━━━━━━━━━━━ 500,000/500,000  [ 0:13:20 < 0:00:00 , 648 it/s ]
+✓ [A2C_stage8-1_seed42] concluído em 13.4 min — modelo: /home/murilo/Documents/academico/unesp_cc/repos/unesp-paper-deep-reinforcement-learning-platform-2d-games/mario_drl_results/models/A2C_stage8-1_seed42.zip
+
+======================================================================
+[11/12] A2C | stage 8-1 | seed 123
+======================================================================
+
+► [A2C_stage8-1_seed123] treinando (500,000 timesteps restantes, n_envs=16)
+  [eval @  10,000] reward= +162.00± 0.00  completion=0%  max_x_avg=224
+  [eval @  20,000] reward= +162.00± 0.00  completion=0%  max_x_avg=224
+  [eval @  30,000] reward= +170.00± 0.00  completion=0%  max_x_avg=231
+  [eval @  40,000] reward= +170.00± 0.00  completion=0%  max_x_avg=231
+  [eval @  50,000] reward= +272.00± 0.00  completion=0%  max_x_avg=334
+  [eval @  60,000] reward= +147.00± 0.00  completion=0%  max_x_avg=208
+  [eval @  70,000] reward= +147.00± 0.00  completion=0%  max_x_avg=208
+  [eval @  80,000] reward= +147.00± 0.00  completion=0%  max_x_avg=208
+  [eval @  90,000] reward= +147.00± 0.00  completion=0%  max_x_avg=208
+  [eval @ 100,000] reward= +147.00± 0.00  completion=0%  max_x_avg=208
+  [eval @ 110,000] reward= +147.00± 0.00  completion=0%  max_x_avg=208
+  [eval @ 120,000] reward= +147.00± 0.00  completion=0%  max_x_avg=208
+  [eval @ 130,000] reward= +147.00± 0.00  completion=0%  max_x_avg=208
+  [eval @ 140,000] reward= +147.00± 0.00  completion=0%  max_x_avg=208
+  [eval @ 150,000] reward= +147.00± 0.00  completion=0%  max_x_avg=208
+  [eval @ 160,000] reward= +147.00± 0.00  completion=0%  max_x_avg=208
+  [eval @ 170,000] reward= +385.00± 0.00  completion=0%  max_x_avg=453
+  [eval @ 180,000] reward= +147.00± 0.00  completion=0%  max_x_avg=208
+  [eval @ 190,000] reward= +147.00± 0.00  completion=0%  max_x_avg=208
+  [eval @ 200,000] reward= +147.00± 0.00  completion=0%  max_x_avg=208
+  [eval @ 210,000] reward= +385.00± 0.00  completion=0%  max_x_avg=453
+  [eval @ 220,000] reward= +147.00± 0.00  completion=0%  max_x_avg=208
+  [eval @ 230,000] reward= +259.00± 0.00  completion=0%  max_x_avg=324
+  [eval @ 240,000] reward= +385.00± 0.00  completion=0%  max_x_avg=453
+  [eval @ 250,000] reward= +147.00± 0.00  completion=0%  max_x_avg=208
+  [eval @ 260,000] reward= +385.00± 0.00  completion=0%  max_x_avg=453
+  [eval @ 270,000] reward= +147.00± 0.00  completion=0%  max_x_avg=208
+  [eval @ 280,000] reward= +385.00± 0.00  completion=0%  max_x_avg=453
+  [eval @ 290,000] reward= +385.00± 0.00  completion=0%  max_x_avg=453
+  [eval @ 300,000] reward= +385.00± 0.00  completion=0%  max_x_avg=453
+  [eval @ 310,000] reward= +147.00± 0.00  completion=0%  max_x_avg=208
+  [eval @ 320,000] reward= +385.00± 0.00  completion=0%  max_x_avg=453
+  [eval @ 330,000] reward= +385.00± 0.00  completion=0%  max_x_avg=453
+  [eval @ 340,000] reward= +191.00± 0.00  completion=0%  max_x_avg=547
+  [eval @ 350,000] reward= +147.00± 0.00  completion=0%  max_x_avg=208
+  [eval @ 360,000] reward= +385.00± 0.00  completion=0%  max_x_avg=453
+  [eval @ 370,000] reward= +385.00± 0.00  completion=0%  max_x_avg=453
+  [eval @ 380,000] reward= +385.00± 0.00  completion=0%  max_x_avg=453
+  [eval @ 390,000] reward= +385.00± 0.00  completion=0%  max_x_avg=453
+  [eval @ 400,000] reward= +147.00± 0.00  completion=0%  max_x_avg=208
+  [eval @ 410,000] reward= +147.00± 0.00  completion=0%  max_x_avg=208
+  [eval @ 420,000] reward= +147.00± 0.00  completion=0%  max_x_avg=208
+  [eval @ 430,000] reward= +147.00± 0.00  completion=0%  max_x_avg=208
+  [eval @ 440,000] reward= +147.00± 0.00  completion=0%  max_x_avg=208
+  [eval @ 450,000] reward= +147.00± 0.00  completion=0%  max_x_avg=208
+  [eval @ 460,000] reward= +385.00± 0.00  completion=0%  max_x_avg=453
+  [eval @ 470,000] reward= +147.00± 0.00  completion=0%  max_x_avg=208
+  [eval @ 480,000] reward= +147.00± 0.00  completion=0%  max_x_avg=208
+  [eval @ 490,000] reward= +259.00± 0.00  completion=0%  max_x_avg=324
+  [eval @ 500,000] reward= +191.00± 0.00  completion=0%  max_x_avg=547
+ 100% ━━━━━━━━━━━━━━━━━━━━━━━━━━ 500,000/500,000  [ 0:16:22 < 0:00:00 , ? it/s ]
+✓ [A2C_stage8-1_seed123] concluído em 16.4 min — modelo: /home/murilo/Documents/academico/unesp_cc/repos/unesp-paper-deep-reinforcement-learning-platform-2d-games/mario_drl_results/models/A2C_stage8-1_seed123.zip
+
+======================================================================
+[12/12] A2C | stage 8-1 | seed 2024
+======================================================================
+
+► [A2C_stage8-1_seed2024] treinando (500,000 timesteps restantes, n_envs=16)
+  [eval @  10,000] reward= +170.00± 0.00  completion=0%  max_x_avg=231
+  [eval @  20,000] reward= +162.00± 0.00  completion=0%  max_x_avg=224
+  [eval @  30,000] reward= +162.00± 0.00  completion=0%  max_x_avg=224
+  [eval @  40,000] reward= +170.00± 0.00  completion=0%  max_x_avg=231
+  [eval @  50,000] reward= +276.00± 0.00  completion=0%  max_x_avg=339
+  [eval @  60,000] reward= +170.00± 0.00  completion=0%  max_x_avg=231
+  [eval @  70,000] reward= +267.00± 0.00  completion=0%  max_x_avg=330
+  [eval @  80,000] reward= +163.00± 0.00  completion=0%  max_x_avg=224
+  [eval @  90,000] reward= +170.00± 0.00  completion=0%  max_x_avg=231
+  [eval @ 100,000] reward= +147.00± 0.00  completion=0%  max_x_avg=208
+  [eval @ 110,000] reward=  -24.00± 0.00  completion=0%  max_x_avg=161
+  [eval @ 120,000] reward= +162.00± 0.00  completion=0%  max_x_avg=224
+  [eval @ 130,000] reward= +162.00± 0.00  completion=0%  max_x_avg=224
+  [eval @ 140,000] reward= +162.00± 0.00  completion=0%  max_x_avg=224
+  [eval @ 150,000] reward= +162.00± 0.00  completion=0%  max_x_avg=224
+  [eval @ 160,000] reward= +162.00± 0.00  completion=0%  max_x_avg=224
+  [eval @ 170,000] reward= +162.00± 0.00  completion=0%  max_x_avg=224
+  [eval @ 180,000] reward= +191.00± 0.00  completion=0%  max_x_avg=546
+  [eval @ 190,000] reward= +191.00± 0.00  completion=0%  max_x_avg=546
+  [eval @ 200,000] reward= +469.00± 0.00  completion=0%  max_x_avg=546
+  [eval @ 210,000] reward= +276.00± 0.00  completion=0%  max_x_avg=339
+  [eval @ 220,000] reward= +170.00± 0.00  completion=0%  max_x_avg=231
+  [eval @ 230,000] reward= +191.00± 0.00  completion=0%  max_x_avg=546
+  [eval @ 240,000] reward= +274.00± 0.00  completion=0%  max_x_avg=338
+  [eval @ 250,000] reward= +276.00± 0.00  completion=0%  max_x_avg=339
+  [eval @ 260,000] reward= +506.00± 0.00  completion=0%  max_x_avg=573
+  [eval @ 270,000] reward= +162.00± 0.00  completion=0%  max_x_avg=224
+  [eval @ 280,000] reward= +162.00± 0.00  completion=0%  max_x_avg=224
+  [eval @ 290,000] reward= +170.00± 0.00  completion=0%  max_x_avg=231
+  [eval @ 300,000] reward= +276.00± 0.00  completion=0%  max_x_avg=339
+  [eval @ 310,000] reward= +162.00± 0.00  completion=0%  max_x_avg=224
+  [eval @ 320,000] reward= +274.00± 0.00  completion=0%  max_x_avg=338
+  [eval @ 330,000] reward= +274.00± 0.00  completion=0%  max_x_avg=338
+  [eval @ 340,000] reward= +274.00± 0.00  completion=0%  max_x_avg=338
+  [eval @ 350,000] reward= +276.00± 0.00  completion=0%  max_x_avg=339
+  [eval @ 360,000] reward= +162.00± 0.00  completion=0%  max_x_avg=224
+  [eval @ 370,000] reward= +162.00± 0.00  completion=0%  max_x_avg=224
+  [eval @ 380,000] reward= +276.00± 0.00  completion=0%  max_x_avg=339
+  [eval @ 390,000] reward= +276.00± 0.00  completion=0%  max_x_avg=339
+  [eval @ 400,000] reward= +276.00± 0.00  completion=0%  max_x_avg=339
+  [eval @ 410,000] reward= +276.00± 0.00  completion=0%  max_x_avg=339
+  [eval @ 420,000] reward= +276.00± 0.00  completion=0%  max_x_avg=339
+  [eval @ 430,000] reward= +162.00± 0.00  completion=0%  max_x_avg=224
+  [eval @ 440,000] reward= +276.00± 0.00  completion=0%  max_x_avg=339
+  [eval @ 450,000] reward= +162.00± 0.00  completion=0%  max_x_avg=224
+  [eval @ 460,000] reward= +276.00± 0.00  completion=0%  max_x_avg=339
+  [eval @ 470,000] reward= +276.00± 0.00  completion=0%  max_x_avg=339
+  [eval @ 480,000] reward= +276.00± 0.00  completion=0%  max_x_avg=339
+  [eval @ 490,000] reward= +276.00± 0.00  completion=0%  max_x_avg=339
+  [eval @ 500,000] reward= +276.00± 0.00  completion=0%  max_x_avg=339
+ 100% ━━━━━━━━━━━━━━━━━━━━━━━━ 500,000/500,000  [ 0:17:15 < 0:00:00 , 620 it/s ]
+✓ [A2C_stage8-1_seed2024] concluído em 17.3 min — modelo: /home/murilo/Documents/academico/unesp_cc/repos/unesp-paper-deep-reinforcement-learning-platform-2d-games/mario_drl_results/models/A2C_stage8-1_seed2024.zip
+
+======================================================================
+RESUMO: 12/12 treinos com sucesso, 0 falharam.
+======================================================================

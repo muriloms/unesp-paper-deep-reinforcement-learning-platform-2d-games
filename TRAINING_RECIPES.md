@@ -242,3 +242,10 @@ PY
 
 # Apaga o modelo ruim e retreina do zero
 python scripts/train.py --profile full --algos PPO --reward-shaping --overwrite
+
+
+# 1) Gera todos os GIFs (individual + comparações DQN/PPO/A2C por stage/seed)
+python scripts/render.py all
+
+# 2) Gera CSVs consolidados (Grupos I/II, Spearman, Mann-Whitney) + PNGs
+python scripts/analyze.py

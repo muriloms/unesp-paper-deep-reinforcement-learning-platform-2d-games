@@ -66,11 +66,13 @@ class MarioEvalCallback(BaseCallback):
             flag_get = False
             time_left = None
             prev_life = None
+            last_info = {}
 
             while not done[0]:
                 action, _ = self.model.predict(obs, deterministic=True)
                 obs, reward, done, info = self.eval_env.step(action)
                 info0 = info[0]
+                last_info = info0
                 ep_reward += float(reward[0])
                 frames += 1
 
@@ -79,12 +81,19 @@ class MarioEvalCallback(BaseCallback):
                 if x > max_x:
                     max_x = x
                 life = info0.get("life", None)
+                # Morte detectada por perda de vida (queda em buraco, Bowser)
                 if prev_life is not None and life is not None and life < prev_life:
                     deaths += 1
                 prev_life = life
                 if info0.get("flag_get", False):
                     flag_get = True
                 time_left = info0.get("time", time_left)
+
+            # Morte por colisão com Goomba pequeno: done=True sem decrementar `life`.
+            # Se o episódio terminou sem flag E sem death registrado por life-loss,
+            # considera como uma morte.
+            if not flag_get and deaths == 0 and frames > 0:
+                deaths = 1
 
             results.append(dict(
                 episode=ep,
