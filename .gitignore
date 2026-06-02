@@ -1,6 +1,9 @@
 # Outputs do experimento (recriados a cada execução)
-mario_drl_results/
-*.zip
+# mario_drl_results/
+# *.zip
+checkpoints/
+tensorboard/
+logs/
 
 # Python
 __pycache__/

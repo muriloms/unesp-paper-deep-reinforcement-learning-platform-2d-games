@@ -1,0 +1,10 @@
+algo,metric,expected_sign,rho,p_value,n
+A2C,tau_median,-,,,4
+A2C,d_bar_median,-,-0.39999999999999997,0.6,4
+A2C,deaths_median,+,,,4
+DQN,tau_median,-,,,4
+DQN,d_bar_median,-,-0.7999999999999999,0.20000000000000007,4
+DQN,deaths_median,+,,,4
+PPO,tau_median,-,,,4
+PPO,d_bar_median,-,-0.39999999999999997,0.6,4
+PPO,deaths_median,+,,,4
