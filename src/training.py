@@ -1,14 +1,29 @@
 """
 Função de treinamento e loop completo.
 
-`train_one()` é idempotente E retomável:
-- Se modelo final + CSV existem → pula
-- Se existe checkpoint parcial → carrega e treina só os timesteps restantes
-- Caso contrário → começa do zero
+`train_one()` é idempotente E retomável, com um MANIFESTO DE PROGRESSO
+(`mario_drl_results/progress.json`) que registra, por experimento, até quantos
+timesteps foi de fato treinado.
 
-Essencial para experimentos longos que podem ser interrompidos.
+Por que o manifesto existe:
+- Os checkpoints intermediários (CheckpointCallback) param em múltiplos de
+  `save_freq`. Num resume curto (ex: 1.9M → 2M), o trecho final de 100k é
+  pequeno demais para disparar um checkpoint em 2M, então o maior checkpoint
+  fica em 1.9M. Sem o manifesto, o skip acharia 1.9M < 2M e retreinaria os
+  100k finais para sempre.
+- O manifesto grava o progresso REAL (timesteps concluídos) quando o treino
+  termina, então o skip passa a confiar nele.
+- É um único arquivo de texto (JSON), versionável no git. Você pode commitar
+  `progress.json` e ignorar os `.zip` pesados — em outro PC dá pra ver o estado
+  do projeto e saber de onde retomar.
+
+Fonte de verdade para "quanto já treinei", em ordem de prioridade:
+  1. progress.json  (registro autoritativo de conclusão)
+  2. maior checkpoint salvo
+  3. nada → começa do zero
 """
 from __future__ import annotations
+import json
 import re
 import time
 from pathlib import Path
@@ -20,7 +35,7 @@ from stable_baselines3.common.callbacks import (
 )
 
 from .config import (
-    HPARAMS, MODELS_DIR, CKPT_DIR, LOGS_DIR, TB_DIR,
+    HPARAMS, MODELS_DIR, CKPT_DIR, LOGS_DIR, TB_DIR, ROOT_DIR,
     experiment_id, ensure_dirs,
 )
 from .env import make_vec_env_mario
@@ -30,6 +45,49 @@ from .utils import set_global_seed, get_device
 
 # Mapeia string → classe SB3
 _ALGO_CLS = {"DQN": DQN, "PPO": PPO, "A2C": A2C}
+
+# Manifesto de progresso (versionável no git)
+PROGRESS_FILE = ROOT_DIR / "progress.json"
+
+
+# ============================================================================
+# MANIFESTO DE PROGRESSO
+# ============================================================================
+def load_progress() -> dict:
+    """Lê progress.json. Retorna {} se não existir ou estiver corrompido."""
+    if not PROGRESS_FILE.exists():
+        return {}
+    try:
+        with open(PROGRESS_FILE, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except (json.JSONDecodeError, OSError):
+        return {}
+
+
+def get_progress(exp_id: str) -> int:
+    """Timesteps concluídos para um experimento, segundo o manifesto. 0 se ausente."""
+    data = load_progress()
+    entry = data.get(exp_id)
+    if isinstance(entry, dict):
+        return int(entry.get("timesteps", 0))
+    if isinstance(entry, int):   # formato antigo simples
+        return entry
+    return 0
+
+
+def update_progress(exp_id: str, timesteps: int, extra: dict | None = None) -> None:
+    """Registra/atualiza o progresso de um experimento no manifesto."""
+    ROOT_DIR.mkdir(parents=True, exist_ok=True)
+    data = load_progress()
+    entry = {"timesteps": int(timesteps), "updated_at": time.strftime("%Y-%m-%dT%H:%M:%S")}
+    if extra:
+        entry.update(extra)
+    data[exp_id] = entry
+    # Escrita atômica: grava em temp e renomeia (evita corromper se cair no meio)
+    tmp = PROGRESS_FILE.with_suffix(".json.tmp")
+    with open(tmp, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2, ensure_ascii=False, sort_keys=True)
+    tmp.replace(PROGRESS_FILE)
 
 
 def _find_latest_checkpoint(exp_id: str) -> tuple[Optional[Path], int]:
@@ -54,6 +112,21 @@ def _find_latest_checkpoint(exp_id: str) -> tuple[Optional[Path], int]:
         return None, 0
     candidates.sort()
     return candidates[-1][1], candidates[-1][0]
+
+
+def _resolve_progress(exp_id: str) -> tuple[int, Optional[Path], int]:
+    """
+    Determina o progresso real do experimento combinando manifesto + checkpoints.
+
+    Returns:
+        (effective_steps, ckpt_path, ckpt_steps)
+          effective_steps : maior entre manifesto e último checkpoint
+          ckpt_path/steps : info do checkpoint (p/ retomar pesos se necessário)
+    """
+    manifest_steps = get_progress(exp_id)
+    ckpt_path, ckpt_steps = _find_latest_checkpoint(exp_id)
+    effective_steps = max(manifest_steps, ckpt_steps)
+    return effective_steps, ckpt_path, ckpt_steps
 
 
 def train_one(
@@ -98,27 +171,16 @@ def train_one(
     model_pt = MODELS_DIR / f"{exp_id}.zip"
     tb_path  = TB_DIR / exp_id
 
-    # Descobre até quantos timesteps já foi treinado (maior checkpoint salvo)
-    ckpt_path, ckpt_steps = _find_latest_checkpoint(exp_id)
+    # Progresso real: combina manifesto (autoritativo) + checkpoints
+    effective_steps, ckpt_path, ckpt_steps = _resolve_progress(exp_id)
 
-    # 1) Treino já cobre o alvo de timesteps?
-    #    - Pula apenas se modelo final existe E o progresso já alcançou o alvo.
-    #    - Se o alvo aumentou (ex: 500k → 2M), NÃO pula: estende o treino.
-    if model_pt.exists() and not overwrite and ckpt_steps >= total_timesteps:
+    # 1) Já atingiu o alvo? Usa o manifesto como fonte de verdade.
+    #    Resolve o loop dos "100k finais": mesmo que o maior checkpoint seja
+    #    1.9M, se o manifesto registra 2M concluído, pula de verdade.
+    if not overwrite and effective_steps >= total_timesteps and model_pt.exists():
         if verbose:
-            print(f"  → {exp_id} já completo ({ckpt_steps:,} ≥ {total_timesteps:,}), pulando.")
-        return log_csv
-
-    # Caso especial: modelo final existe mas não há checkpoints (ex: smoke antigo)
-    # e o alvo é o mesmo de antes — mantém o comportamento de pular.
-    if (model_pt.exists() and not overwrite and ckpt_path is None
-            and log_csv.exists()):
-        # Sem checkpoints não dá pra saber o progresso; assume que o modelo final
-        # corresponde ao alvo anterior. Se o usuário quer estender, use --overwrite
-        # ou garanta que há checkpoints. Loga aviso e pula.
-        if verbose:
-            print(f"  → {exp_id}: modelo final existe sem checkpoints; "
-                  f"pulando (use --overwrite para refazer).")
+            print(f"  → {exp_id} já completo ({effective_steps:,} ≥ "
+                  f"{total_timesteps:,}), pulando.")
         return log_csv
 
     device = get_device()
@@ -135,25 +197,21 @@ def train_one(
 
     cls = _ALGO_CLS[algo]
 
-    # 3) Lógica de RESUME — continua do ponto mais avançado disponível.
-    #    Prioriza o último checkpoint; se não houver mas existe modelo final,
-    #    retoma a partir do modelo final (caso de estender 500k → 2M quando
-    #    o final == último checkpoint).
+    # 3) RESUME — escolhe a melhor fonte de pesos disponível.
+    #    Prioriza checkpoint (tem pesos + optimizer state). Se o manifesto diz
+    #    que há progresso mas o checkpoint está atrás, usa o modelo final.
     resume_source = None
     resume_steps = 0
-    if not overwrite:
-        if ckpt_path is not None and ckpt_steps < total_timesteps:
-            resume_source = ckpt_path
-            resume_steps = ckpt_steps
-        elif model_pt.exists() and ckpt_steps < total_timesteps:
-            # Sem checkpoint utilizável, mas há modelo final — retoma dele.
-            # Assume que o final corresponde ao maior checkpoint (ckpt_steps),
-            # ou 0 se nenhum checkpoint existir (treina o alvo inteiro a partir
-            # dos pesos do modelo final).
-            resume_source = model_pt
-            resume_steps = ckpt_steps  # pode ser 0 se não havia checkpoints
+    if not overwrite and effective_steps > 0:
+        if ckpt_path is not None and ckpt_steps >= effective_steps:
+            resume_source, resume_steps = ckpt_path, ckpt_steps
+        elif model_pt.exists():
+            # Modelo final está à frente (ou igual) ao checkpoint → retoma dele.
+            resume_source, resume_steps = model_pt, effective_steps
+        elif ckpt_path is not None:
+            resume_source, resume_steps = ckpt_path, ckpt_steps
 
-    if resume_source is not None:
+    if resume_source is not None and resume_steps < total_timesteps:
         if verbose:
             print(f"  ↻ Retomando {exp_id} de: {resume_source.name} "
                   f"({resume_steps:,} steps já feitos → alvo {total_timesteps:,})")
@@ -177,6 +235,7 @@ def train_one(
         model = cls(**common_kwargs, **hp)
         remaining = total_timesteps
         reset_num_timesteps = True
+        resume_steps = 0
 
     # 4) Callbacks: avaliação + checkpoint periódico
     eval_cb = MarioEvalCallback(
@@ -217,9 +276,20 @@ def train_one(
             reset_num_timesteps=reset_num_timesteps,
         )
         model.save(model_pt)
+        # Registra progresso REAL no manifesto — fonte de verdade para o skip.
+        update_progress(
+            exp_id,
+            timesteps=total_timesteps,
+            extra={
+                "algo": algo, "stage": stage, "seed": seed,
+                "reward_shaping": bool(reward_shaping),
+                "model": model_pt.name,
+            },
+        )
         if verbose:
             elapsed = time.time() - t0
             print(f"✓ [{exp_id}] concluído em {elapsed/60:.1f} min — modelo: {model_pt}")
+            print(f"  progresso registrado em {PROGRESS_FILE.name}: {total_timesteps:,} steps")
     finally:
         train_env.close()
     return log_csv

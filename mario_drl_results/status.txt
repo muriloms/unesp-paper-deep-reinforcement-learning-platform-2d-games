@@ -1,0 +1,46 @@
+==============================================================================
+STATUS DOS TREINOS — alvo: 2,000,000 timesteps
+Diretório: /home/murilo/Documents/academico/unesp_cc/repos/unesp-paper-deep-reinforcement-learning-platform-2d-games/mario_drl_results
+==============================================================================
+
+experimento                           treinado  modelo       falta  estado
+------------------------------------------------------------------------------
+A2C_stage1-1_seed123                 2,000,000     sim           0  ✓ completo
+A2C_stage1-1_seed2024                2,000,000     sim           0  ✓ completo
+A2C_stage1-1_seed42                  2,000,000     sim           0  ✓ completo
+A2C_stage1-2_seed123                 2,000,000     sim           0  ✓ completo
+A2C_stage1-2_seed2024                2,000,000     sim           0  ✓ completo
+A2C_stage1-2_seed42                  2,000,000     sim           0  ✓ completo
+A2C_stage4-1_seed123                 2,000,000     sim           0  ✓ completo
+A2C_stage4-1_seed2024                2,000,000     sim           0  ✓ completo
+A2C_stage4-1_seed42                  2,000,000     sim           0  ✓ completo
+A2C_stage8-1_seed123                 2,000,000     sim           0  ✓ completo
+A2C_stage8-1_seed2024                2,000,000     sim           0  ✓ completo
+A2C_stage8-1_seed42                  2,000,000     sim           0  ✓ completo
+DQN_stage1-1_seed123                 2,000,000     sim           0  ✓ completo
+DQN_stage1-1_seed2024                2,000,000     sim           0  ✓ completo
+DQN_stage1-1_seed42                  2,000,000     sim           0  ✓ completo
+DQN_stage1-2_seed123                 2,000,000     sim           0  ✓ completo
+DQN_stage1-2_seed2024                2,000,000     sim           0  ✓ completo
+DQN_stage1-2_seed42                  2,000,000     sim           0  ✓ completo
+DQN_stage4-1_seed123                 2,000,000     sim           0  ✓ completo
+DQN_stage4-1_seed2024                2,000,000     sim           0  ✓ completo
+DQN_stage4-1_seed42                  2,000,000     sim           0  ✓ completo
+DQN_stage8-1_seed123                 2,000,000     sim           0  ✓ completo
+DQN_stage8-1_seed2024                2,000,000     sim           0  ✓ completo
+DQN_stage8-1_seed42                  2,000,000     sim           0  ✓ completo
+PPO_stage1-1_seed123                 2,000,000     sim           0  ✓ completo
+PPO_stage1-1_seed2024                2,000,000     sim           0  ✓ completo
+PPO_stage1-1_seed42                  2,000,000     sim           0  ✓ completo
+PPO_stage1-2_seed123                 2,000,000     sim           0  ✓ completo
+PPO_stage1-2_seed2024                2,000,000     sim           0  ✓ completo
+PPO_stage1-2_seed42                  2,000,000     sim           0  ✓ completo
+PPO_stage4-1_seed123                 2,000,000     sim           0  ✓ completo
+PPO_stage4-1_seed2024                2,000,000     sim           0  ✓ completo
+PPO_stage4-1_seed42                  2,000,000     sim           0  ✓ completo
+PPO_stage8-1_seed123                 2,000,000     sim           0  ✓ completo
+PPO_stage8-1_seed2024                2,000,000     sim           0  ✓ completo
+PPO_stage8-1_seed42                  2,000,000     sim           0  ✓ completo
+------------------------------------------------------------------------------
+Total: 36 | completos: 36 | retomáveis: 0 | sem modelo: 0
+==============================================================================

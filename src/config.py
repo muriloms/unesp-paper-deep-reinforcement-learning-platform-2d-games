@@ -57,9 +57,13 @@ USE_REWARD_SHAPING = False
 # ============================================================================
 # MODOS DE EXECUÇÃO
 # ============================================================================
-# "smoke" → ~2 min, valida pipeline (pouco timesteps p/ ver aprendizado)
-# "mid"   → ~10-20 min, validação de aprendizado real (DQN começa a aprender)
-# "full"  → ~60h, experimento completo do paper
+# "smoke"    → ~2 min, valida pipeline (pouco timesteps p/ ver aprendizado)
+# "mid"      → ~10-20 min, validação de aprendizado real (DQN começa a aprender)
+# "long"     → ~30-60 min, progresso visível antes do full
+# "full"     → ~60h, experimento completo do paper (500k × todas fases/seeds)
+# "scaling"  → 2M em 2 fases (1-1, 4-1), experimento de escala de orçamento
+# "full-2mi" → 2M em TODAS as fases/seeds (36 treinos)
+# "full-4mi" → 4M em TODAS as fases/seeds — retoma do fim do full-2mi via manifesto
 
 PROFILES = {
     "smoke": dict(
@@ -120,13 +124,26 @@ PROFILES = {
         seeds_to_run    = SEEDS,
         n_checkpoints   = 10,        # checkpoint a cada 200k (resume granular)
     ),
-    "full-mi": dict(
+    "full-2mi": dict(
+        # 2M timesteps em TODAS as fases × seeds (36 treinos).
+        # Retoma do fim do "full" (500k) via manifesto/modelo final.
         total_timesteps = 2_000_000,
-        eval_freq       = 10_000,
+        eval_freq       = 20_000,
         n_eval_episodes = 5,
         stages_to_run   = STAGES,
         seeds_to_run    = SEEDS,
-        n_checkpoints   = 5,
+        n_checkpoints   = 10,        # checkpoint a cada 200k
+    ),
+    "full-4mi": dict(
+        # 4M timesteps em TODAS as fases × seeds (36 treinos).
+        # Retoma do fim do "full-2mi" (2M) via manifesto/modelo final —
+        # treina só os 2M restantes de cada treino que já chegou a 2M.
+        total_timesteps = 4_000_000,
+        eval_freq       = 20_000,
+        n_eval_episodes = 5,
+        stages_to_run   = STAGES,
+        seeds_to_run    = SEEDS,
+        n_checkpoints   = 20,        # checkpoint a cada 200k (mantém granularidade)
     ),
 }
 

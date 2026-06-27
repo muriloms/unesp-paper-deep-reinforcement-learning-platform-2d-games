@@ -1,12 +1,32 @@
-# Outputs do experimento (recriados a cada execução)
-# mario_drl_results/
-# *.zip
-checkpoints/
-tensorboard/
-logs/
+# ===================================================================
+# Artefatos pesados — NÃO versionar
+# ===================================================================
+# Checkpoints intermediários (muitos arquivos, vários GB)
+mario_drl_results/models/checkpoints/
 
+# TensorBoard logs (binários grandes)
+mario_drl_results/tensorboard/
+
+# GIFs e PNGs gerados (regeneráveis a partir dos modelos)
+mario_drl_results/plots/
+*.gif
+
+# Snapshots históricos
 mario_drl_results_v1/
 mario_drl_results_v2/
+
+# ===================================================================
+# VERSIONADO (vai pro git):
+#   - mario_drl_results/models/*.zip   (modelos finais)
+#   - mario_drl_results/progress.json  (estado do projeto)
+#   - mario_drl_results/logs/*.csv     (trajetórias)
+#   - mario_drl_results/metrics/*.csv  (métricas)
+#   - mario_drl_results/status.txt     (relatório legível)
+#
+# OBS: modelos finais (~20-50MB cada × 36 ≈ 1GB). Considere Git LFS:
+#   git lfs install
+#   git lfs track "mario_drl_results/models/*.zip"
+# ===================================================================
 
 # Python
 __pycache__/
@@ -20,6 +40,10 @@ venv/
 
 # Jupyter
 .ipynb_checkpoints/
+
+# Logs de execução (nohup)
+*.log
+*.pid
 
 # OS / IDE
 .DS_Store
