@@ -4,359 +4,323 @@
     "model": "A2C_stage1-1_seed123.zip",
     "reward_shaping": false,
     "seed": 123,
-    "source": "rebuild",
+    "source": "csv_truth",
     "stage": "1-1",
-    "timesteps": 2000000,
-    "updated_at": "2026-06-27T16:34:15"
+    "timesteps": 2000000
   },
   "A2C_stage1-1_seed2024": {
     "algo": "A2C",
     "model": "A2C_stage1-1_seed2024.zip",
     "reward_shaping": false,
     "seed": 2024,
-    "source": "rebuild",
+    "source": "csv_truth",
     "stage": "1-1",
-    "timesteps": 2000000,
-    "updated_at": "2026-06-27T16:34:15"
+    "timesteps": 2000000
   },
   "A2C_stage1-1_seed42": {
     "algo": "A2C",
     "model": "A2C_stage1-1_seed42.zip",
     "reward_shaping": false,
     "seed": 42,
-    "source": "rebuild",
+    "source": "csv_truth",
     "stage": "1-1",
-    "timesteps": 2000000,
-    "updated_at": "2026-06-27T16:34:15"
+    "timesteps": 2000000
   },
   "A2C_stage1-2_seed123": {
     "algo": "A2C",
     "model": "A2C_stage1-2_seed123.zip",
     "reward_shaping": false,
     "seed": 123,
-    "source": "rebuild",
+    "source": "csv_truth",
     "stage": "1-2",
-    "timesteps": 2000000,
-    "updated_at": "2026-06-27T16:34:15"
+    "timesteps": 500000
   },
   "A2C_stage1-2_seed2024": {
     "algo": "A2C",
     "model": "A2C_stage1-2_seed2024.zip",
     "reward_shaping": false,
     "seed": 2024,
-    "source": "rebuild",
+    "source": "csv_truth",
     "stage": "1-2",
-    "timesteps": 2000000,
-    "updated_at": "2026-06-27T16:34:15"
+    "timesteps": 500000
   },
   "A2C_stage1-2_seed42": {
     "algo": "A2C",
     "model": "A2C_stage1-2_seed42.zip",
     "reward_shaping": false,
     "seed": 42,
-    "source": "rebuild",
+    "source": "csv_truth",
     "stage": "1-2",
-    "timesteps": 2000000,
-    "updated_at": "2026-06-27T16:34:15"
+    "timesteps": 500000
   },
   "A2C_stage4-1_seed123": {
     "algo": "A2C",
     "model": "A2C_stage4-1_seed123.zip",
     "reward_shaping": false,
     "seed": 123,
-    "source": "rebuild",
+    "source": "csv_truth",
     "stage": "4-1",
-    "timesteps": 2000000,
-    "updated_at": "2026-06-27T16:34:15"
+    "timesteps": 2000000
   },
   "A2C_stage4-1_seed2024": {
     "algo": "A2C",
     "model": "A2C_stage4-1_seed2024.zip",
     "reward_shaping": false,
     "seed": 2024,
-    "source": "rebuild",
+    "source": "csv_truth",
     "stage": "4-1",
-    "timesteps": 2000000,
-    "updated_at": "2026-06-27T16:34:15"
+    "timesteps": 2000000
   },
   "A2C_stage4-1_seed42": {
     "algo": "A2C",
     "model": "A2C_stage4-1_seed42.zip",
     "reward_shaping": false,
     "seed": 42,
-    "source": "rebuild",
+    "source": "csv_truth",
     "stage": "4-1",
-    "timesteps": 2000000,
-    "updated_at": "2026-06-27T16:34:15"
+    "timesteps": 2000000
   },
   "A2C_stage8-1_seed123": {
     "algo": "A2C",
     "model": "A2C_stage8-1_seed123.zip",
     "reward_shaping": false,
     "seed": 123,
-    "source": "rebuild",
+    "source": "csv_truth",
     "stage": "8-1",
-    "timesteps": 2000000,
-    "updated_at": "2026-06-27T16:34:15"
+    "timesteps": 500000
   },
   "A2C_stage8-1_seed2024": {
     "algo": "A2C",
     "model": "A2C_stage8-1_seed2024.zip",
     "reward_shaping": false,
     "seed": 2024,
-    "source": "rebuild",
+    "source": "csv_truth",
     "stage": "8-1",
-    "timesteps": 2000000,
-    "updated_at": "2026-06-27T16:34:15"
+    "timesteps": 500000
   },
   "A2C_stage8-1_seed42": {
     "algo": "A2C",
     "model": "A2C_stage8-1_seed42.zip",
     "reward_shaping": false,
     "seed": 42,
-    "source": "rebuild",
+    "source": "csv_truth",
     "stage": "8-1",
-    "timesteps": 2000000,
-    "updated_at": "2026-06-27T16:34:15"
+    "timesteps": 500000
   },
   "DQN_stage1-1_seed123": {
     "algo": "DQN",
     "model": "DQN_stage1-1_seed123.zip",
     "reward_shaping": false,
     "seed": 123,
-    "source": "rebuild",
+    "source": "csv_truth",
     "stage": "1-1",
-    "timesteps": 2000000,
-    "updated_at": "2026-06-27T16:34:15"
+    "timesteps": 2000000
   },
   "DQN_stage1-1_seed2024": {
     "algo": "DQN",
     "model": "DQN_stage1-1_seed2024.zip",
     "reward_shaping": false,
     "seed": 2024,
-    "source": "rebuild",
+    "source": "csv_truth",
     "stage": "1-1",
-    "timesteps": 2000000,
-    "updated_at": "2026-06-27T16:34:15"
+    "timesteps": 2000000
   },
   "DQN_stage1-1_seed42": {
     "algo": "DQN",
     "model": "DQN_stage1-1_seed42.zip",
     "reward_shaping": false,
     "seed": 42,
-    "source": "rebuild",
+    "source": "csv_truth",
     "stage": "1-1",
-    "timesteps": 2000000,
-    "updated_at": "2026-06-27T16:34:15"
+    "timesteps": 2000000
   },
   "DQN_stage1-2_seed123": {
     "algo": "DQN",
     "model": "DQN_stage1-2_seed123.zip",
     "reward_shaping": false,
     "seed": 123,
-    "source": "rebuild",
+    "source": "csv_truth",
     "stage": "1-2",
-    "timesteps": 2000000,
-    "updated_at": "2026-06-27T16:34:15"
+    "timesteps": 2000000
   },
   "DQN_stage1-2_seed2024": {
     "algo": "DQN",
     "model": "DQN_stage1-2_seed2024.zip",
     "reward_shaping": false,
     "seed": 2024,
-    "source": "rebuild",
+    "source": "csv_truth",
     "stage": "1-2",
-    "timesteps": 2000000,
-    "updated_at": "2026-06-27T16:34:15"
+    "timesteps": 2000000
   },
   "DQN_stage1-2_seed42": {
     "algo": "DQN",
     "model": "DQN_stage1-2_seed42.zip",
     "reward_shaping": false,
     "seed": 42,
-    "source": "rebuild",
+    "source": "csv_truth",
     "stage": "1-2",
-    "timesteps": 2000000,
-    "updated_at": "2026-06-27T16:34:15"
+    "timesteps": 1930000
   },
   "DQN_stage4-1_seed123": {
     "algo": "DQN",
     "model": "DQN_stage4-1_seed123.zip",
     "reward_shaping": false,
     "seed": 123,
-    "source": "rebuild",
+    "source": "csv_truth",
     "stage": "4-1",
-    "timesteps": 2000000,
-    "updated_at": "2026-06-27T16:34:15"
+    "timesteps": 1920000
   },
   "DQN_stage4-1_seed2024": {
     "algo": "DQN",
     "model": "DQN_stage4-1_seed2024.zip",
     "reward_shaping": false,
     "seed": 2024,
-    "source": "rebuild",
+    "source": "csv_truth",
     "stage": "4-1",
-    "timesteps": 2000000,
-    "updated_at": "2026-06-27T16:34:15"
+    "timesteps": 2000000
   },
   "DQN_stage4-1_seed42": {
     "algo": "DQN",
     "model": "DQN_stage4-1_seed42.zip",
     "reward_shaping": false,
     "seed": 42,
-    "source": "rebuild",
+    "source": "csv_truth",
     "stage": "4-1",
-    "timesteps": 2000000,
-    "updated_at": "2026-06-27T16:34:15"
+    "timesteps": 2000000
   },
   "DQN_stage8-1_seed123": {
     "algo": "DQN",
     "model": "DQN_stage8-1_seed123.zip",
     "reward_shaping": false,
     "seed": 123,
-    "source": "rebuild",
+    "source": "csv_truth",
     "stage": "8-1",
-    "timesteps": 2000000,
-    "updated_at": "2026-06-27T16:34:15"
+    "timesteps": 500000
   },
   "DQN_stage8-1_seed2024": {
     "algo": "DQN",
     "model": "DQN_stage8-1_seed2024.zip",
     "reward_shaping": false,
     "seed": 2024,
-    "source": "rebuild",
+    "source": "csv_truth",
     "stage": "8-1",
-    "timesteps": 2000000,
-    "updated_at": "2026-06-27T16:34:15"
+    "timesteps": 500000
   },
   "DQN_stage8-1_seed42": {
     "algo": "DQN",
     "model": "DQN_stage8-1_seed42.zip",
     "reward_shaping": false,
     "seed": 42,
-    "source": "rebuild",
+    "source": "csv_truth",
     "stage": "8-1",
-    "timesteps": 2000000,
-    "updated_at": "2026-06-27T16:34:15"
+    "timesteps": 500000
   },
   "PPO_stage1-1_seed123": {
     "algo": "PPO",
     "model": "PPO_stage1-1_seed123.zip",
     "reward_shaping": false,
     "seed": 123,
-    "source": "rebuild",
+    "source": "csv_truth",
     "stage": "1-1",
-    "timesteps": 2000000,
-    "updated_at": "2026-06-27T16:34:15"
+    "timesteps": 2000000
   },
   "PPO_stage1-1_seed2024": {
     "algo": "PPO",
     "model": "PPO_stage1-1_seed2024.zip",
     "reward_shaping": false,
     "seed": 2024,
-    "source": "rebuild",
+    "source": "csv_truth",
     "stage": "1-1",
-    "timesteps": 2000000,
-    "updated_at": "2026-06-27T16:34:15"
+    "timesteps": 2000000
   },
   "PPO_stage1-1_seed42": {
     "algo": "PPO",
     "model": "PPO_stage1-1_seed42.zip",
     "reward_shaping": false,
     "seed": 42,
-    "source": "rebuild",
+    "source": "csv_truth",
     "stage": "1-1",
-    "timesteps": 2000000,
-    "updated_at": "2026-06-27T16:34:15"
+    "timesteps": 2000000
   },
   "PPO_stage1-2_seed123": {
     "algo": "PPO",
     "model": "PPO_stage1-2_seed123.zip",
     "reward_shaping": false,
     "seed": 123,
-    "source": "rebuild",
+    "source": "csv_truth",
     "stage": "1-2",
-    "timesteps": 2000000,
-    "updated_at": "2026-06-27T16:34:15"
+    "timesteps": 500000
   },
   "PPO_stage1-2_seed2024": {
     "algo": "PPO",
     "model": "PPO_stage1-2_seed2024.zip",
     "reward_shaping": false,
     "seed": 2024,
-    "source": "rebuild",
+    "source": "csv_truth",
     "stage": "1-2",
-    "timesteps": 2000000,
-    "updated_at": "2026-06-27T16:34:15"
+    "timesteps": 500000
   },
   "PPO_stage1-2_seed42": {
     "algo": "PPO",
     "model": "PPO_stage1-2_seed42.zip",
     "reward_shaping": false,
     "seed": 42,
-    "source": "rebuild",
+    "source": "csv_truth",
     "stage": "1-2",
-    "timesteps": 2000000,
-    "updated_at": "2026-06-27T16:34:15"
+    "timesteps": 500000
   },
   "PPO_stage4-1_seed123": {
     "algo": "PPO",
     "model": "PPO_stage4-1_seed123.zip",
     "reward_shaping": false,
     "seed": 123,
-    "source": "rebuild",
+    "source": "csv_truth",
     "stage": "4-1",
-    "timesteps": 2000000,
-    "updated_at": "2026-06-27T16:34:15"
+    "timesteps": 2000000
   },
   "PPO_stage4-1_seed2024": {
     "algo": "PPO",
     "model": "PPO_stage4-1_seed2024.zip",
     "reward_shaping": false,
     "seed": 2024,
-    "source": "rebuild",
+    "source": "csv_truth",
     "stage": "4-1",
-    "timesteps": 2000000,
-    "updated_at": "2026-06-27T16:34:15"
+    "timesteps": 2000000
   },
   "PPO_stage4-1_seed42": {
     "algo": "PPO",
     "model": "PPO_stage4-1_seed42.zip",
     "reward_shaping": false,
     "seed": 42,
-    "source": "rebuild",
+    "source": "csv_truth",
     "stage": "4-1",
-    "timesteps": 2000000,
-    "updated_at": "2026-06-27T16:34:15"
+    "timesteps": 2000000
   },
   "PPO_stage8-1_seed123": {
     "algo": "PPO",
     "model": "PPO_stage8-1_seed123.zip",
     "reward_shaping": false,
     "seed": 123,
-    "source": "rebuild",
+    "source": "csv_truth",
     "stage": "8-1",
-    "timesteps": 2000000,
-    "updated_at": "2026-06-27T16:34:15"
+    "timesteps": 500000
   },
   "PPO_stage8-1_seed2024": {
     "algo": "PPO",
     "model": "PPO_stage8-1_seed2024.zip",
     "reward_shaping": false,
     "seed": 2024,
-    "source": "rebuild",
+    "source": "csv_truth",
     "stage": "8-1",
-    "timesteps": 2000000,
-    "updated_at": "2026-06-27T16:34:15"
+    "timesteps": 500000
   },
   "PPO_stage8-1_seed42": {
     "algo": "PPO",
     "model": "PPO_stage8-1_seed42.zip",
     "reward_shaping": false,
     "seed": 42,
-    "source": "rebuild",
+    "source": "csv_truth",
     "stage": "8-1",
-    "timesteps": 2000000,
-    "updated_at": "2026-06-27T16:34:15"
+    "timesteps": 500000
   }
 }

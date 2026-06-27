@@ -50,6 +50,38 @@ _ALGO_CLS = {"DQN": DQN, "PPO": PPO, "A2C": A2C}
 PROGRESS_FILE = ROOT_DIR / "progress.json"
 
 
+class ProgressManifestCallback(BaseCallback):
+    """
+    Atualiza o manifesto (progress.json) com o progresso REAL durante o treino,
+    não só ao final. Garante que, se o treino for interrompido (Ctrl+C, queda,
+    fechar o PC), o manifesto reflita até onde realmente chegou.
+
+    Grava em intervalos (update_every timesteps) para não escrever em disco a
+    cada passo. O valor gravado é `base_timesteps + num_timesteps`, onde
+    base_timesteps é de onde o resume começou (mantém a contagem absoluta).
+    """
+    def __init__(self, exp_id: str, base_timesteps: int, meta: dict,
+                 update_every: int = 20_000, verbose: int = 0):
+        super().__init__(verbose)
+        self.exp_id = exp_id
+        self.base_timesteps = base_timesteps
+        self.meta = meta
+        self.update_every = update_every
+        self._last_written = 0
+
+    def _absolute_steps(self) -> int:
+        # num_timesteps conta os passos desta chamada learn(); soma a base
+        # para obter o total absoluto desde o início do experimento.
+        return self.base_timesteps + self.num_timesteps
+
+    def _on_step(self) -> bool:
+        abs_steps = self._absolute_steps()
+        if abs_steps - self._last_written >= self.update_every:
+            update_progress(self.exp_id, timesteps=abs_steps, extra=self.meta)
+            self._last_written = abs_steps
+        return True
+
+
 # ============================================================================
 # MANIFESTO DE PROGRESSO
 # ============================================================================
@@ -260,6 +292,23 @@ def train_one(
             save_replay_buffer=False,
             save_vecnormalize=False,
         ))
+
+    # Grava progresso REAL no manifesto durante o treino (não só ao final).
+    # Se o treino for interrompido, o progress.json reflete até onde chegou —
+    # essencial p/ o fluxo entre PCs (interromper, subir no git, retomar).
+    progress_meta = {
+        "algo": algo, "stage": stage, "seed": seed,
+        "reward_shaping": bool(reward_shaping),
+        "model": model_pt.name,
+        "source": "live",
+    }
+    callbacks.append(ProgressManifestCallback(
+        exp_id=exp_id,
+        base_timesteps=resume_steps,   # de onde o resume começou (0 se do zero)
+        meta=progress_meta,
+        update_every=max(eval_freq, 10_000),  # alinha com a freq de avaliação
+        verbose=0,
+    ))
 
     cb = CallbackList(callbacks) if len(callbacks) > 1 else callbacks[0]
 

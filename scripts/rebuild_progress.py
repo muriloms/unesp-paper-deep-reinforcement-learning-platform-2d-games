@@ -1,31 +1,31 @@
 #!/usr/bin/env python3
 """
-Reconstrói o progress.json a partir dos modelos e checkpoints já existentes.
+Reconstrói o progress.json a partir do estado REAL dos treinos no disco.
 
-Use isto UMA VEZ após atualizar para a versão com manifesto, para registrar
-os treinos que você já completou ANTES do manifesto existir.
+Fonte de verdade, em ordem de prioridade por experimento:
+  1. Último timestep registrado no CSV de avaliação (logs/{exp_id}.csv)
+     — é o valor mais confiável: reflete até onde o treino realmente avaliou.
+  2. Maior checkpoint salvo (models/checkpoints/{exp_id}_{N}_steps.zip)
+     — usado se não houver CSV.
+  3. Se nada disso existir mas há modelo final, registra --fallback-target.
 
-Heurística por experimento:
-  - Se há modelo final (.zip) E checkpoints → progresso = maior valor entre
-    o último checkpoint e o alvo inferido. Por padrão assume que o modelo
-    final corresponde ao --assume-target (default 2_000_000), já que o último
-    checkpoint costuma ficar atrás do alvo real (ex: 1.9M para um alvo de 2M).
-  - Se há modelo final SEM checkpoints → registra --assume-target.
-  - Se há só checkpoints (sem modelo final) → registra o maior checkpoint
-    (treino incompleto; o resume continuará dali).
+Por que NÃO assume um alvo fixo: treinos podem ter parado em pontos diferentes
+(ex: 500k, 1.93M, 2M). Carimbar o mesmo valor em todos corromperia o manifesto
+e faria o skip pular treinos incompletos.
 
 Uso:
-    # Assume que todo modelo final completo chegou a 2M
-    python scripts/rebuild_progress.py --assume-target 2000000
-
-    # Para um projeto que parou em 500k
-    python scripts/rebuild_progress.py --assume-target 500000
+    # Reconstrói tudo a partir dos CSVs (recomendado)
+    python scripts/rebuild_progress.py
 
     # Ver o que faria sem gravar
-    python scripts/rebuild_progress.py --assume-target 2000000 --dry-run
+    python scripts/rebuild_progress.py --dry-run
+
+    # Valor de fallback p/ modelos sem CSV nem checkpoint (raro)
+    python scripts/rebuild_progress.py --fallback-target 500000
 """
 from __future__ import annotations
 import argparse
+import csv
 import re
 import sys
 from pathlib import Path
@@ -47,10 +47,42 @@ def parse_model_name(stem: str):
     return algo, stage, int(seed_str), variant
 
 
+def last_timestep_from_csv(exp_id: str) -> int | None:
+    """Último timestep do CSV de avaliação. None se ausente/vazio."""
+    csv_path = config.LOGS_DIR / f"{exp_id}.csv"
+    if not csv_path.exists():
+        return None
+    try:
+        with open(csv_path) as f:
+            rows = list(csv.reader(f))
+        if len(rows) < 2:
+            return None
+        return int(rows[-1][0])   # coluna 'timestep' da última linha
+    except (ValueError, OSError, IndexError):
+        return None
+
+
+def resolve_real_progress(exp_id: str, fallback_target: int) -> tuple[int, str]:
+    """
+    Determina o progresso real de um experimento.
+    Returns (timesteps, source_label).
+    """
+    csv_ts = last_timestep_from_csv(exp_id)
+    if csv_ts is not None:
+        return csv_ts, "csv"
+
+    _, ckpt_steps = _find_latest_checkpoint(exp_id)
+    if ckpt_steps > 0:
+        return ckpt_steps, "checkpoint"
+
+    return fallback_target, "fallback"
+
+
 def main() -> int:
-    p = argparse.ArgumentParser(description="Reconstrói progress.json de modelos existentes.")
-    p.add_argument("--assume-target", type=int, default=2_000_000,
-                   help="Timesteps a registrar p/ modelos finais completos (default 2M)")
+    p = argparse.ArgumentParser(
+        description="Reconstrói progress.json a partir do estado real (CSV > checkpoint).")
+    p.add_argument("--fallback-target", type=int, default=500_000,
+                   help="Valor p/ modelos sem CSV nem checkpoint (default 500k)")
     p.add_argument("--dry-run", action="store_true", help="Mostra sem gravar")
     args = p.parse_args()
 
@@ -60,7 +92,7 @@ def main() -> int:
 
     existing = load_progress()
     print(f"Manifesto atual: {len(existing)} entradas em {PROGRESS_FILE}")
-    print(f"Alvo assumido p/ modelos completos: {args.assume_target:,}\n")
+    print(f"Fonte de verdade: CSV > checkpoint > fallback ({args.fallback_target:,})\n")
 
     n = 0
     for model_path in sorted(config.MODELS_DIR.glob("*.zip")):
@@ -68,23 +100,19 @@ def main() -> int:
         if parsed is None:
             continue
         algo, stage, seed, variant = parsed
-        exp_id = model_path.stem  # já inclui sufixo _shape se houver
+        exp_id = model_path.stem
 
-        _, ckpt_steps = _find_latest_checkpoint(exp_id)
-
-        # Modelo final existe → assume alvo (a menos que checkpoint o exceda)
-        registered = max(args.assume_target, ckpt_steps)
+        timesteps, source = resolve_real_progress(exp_id, args.fallback_target)
 
         extra = {"algo": algo, "stage": stage, "seed": seed,
                  "reward_shaping": bool(variant == "shape"),
-                 "model": model_path.name, "source": "rebuild"}
+                 "model": model_path.name, "source": f"rebuild_{source}"}
 
         if args.dry_run:
-            print(f"  [dry] {exp_id}: {registered:,} steps "
-                  f"(ckpt={ckpt_steps:,})")
+            print(f"  [dry] {exp_id}: {timesteps:,} steps (via {source})")
         else:
-            update_progress(exp_id, timesteps=registered, extra=extra)
-            print(f"  ✓ {exp_id}: {registered:,} steps")
+            update_progress(exp_id, timesteps=timesteps, extra=extra)
+            print(f"  ✓ {exp_id}: {timesteps:,} steps (via {source})")
         n += 1
 
     print(f"\n{'(dry-run) ' if args.dry_run else ''}{n} experimento(s) processado(s).")
