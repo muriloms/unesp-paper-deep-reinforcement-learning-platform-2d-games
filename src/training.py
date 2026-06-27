@@ -98,10 +98,27 @@ def train_one(
     model_pt = MODELS_DIR / f"{exp_id}.zip"
     tb_path  = TB_DIR / exp_id
 
-    # 1) Treino completo já feito?
-    if log_csv.exists() and model_pt.exists() and not overwrite:
+    # Descobre até quantos timesteps já foi treinado (maior checkpoint salvo)
+    ckpt_path, ckpt_steps = _find_latest_checkpoint(exp_id)
+
+    # 1) Treino já cobre o alvo de timesteps?
+    #    - Pula apenas se modelo final existe E o progresso já alcançou o alvo.
+    #    - Se o alvo aumentou (ex: 500k → 2M), NÃO pula: estende o treino.
+    if model_pt.exists() and not overwrite and ckpt_steps >= total_timesteps:
         if verbose:
-            print(f"  → {exp_id} já completo, pulando.")
+            print(f"  → {exp_id} já completo ({ckpt_steps:,} ≥ {total_timesteps:,}), pulando.")
+        return log_csv
+
+    # Caso especial: modelo final existe mas não há checkpoints (ex: smoke antigo)
+    # e o alvo é o mesmo de antes — mantém o comportamento de pular.
+    if (model_pt.exists() and not overwrite and ckpt_path is None
+            and log_csv.exists()):
+        # Sem checkpoints não dá pra saber o progresso; assume que o modelo final
+        # corresponde ao alvo anterior. Se o usuário quer estender, use --overwrite
+        # ou garanta que há checkpoints. Loga aviso e pula.
+        if verbose:
+            print(f"  → {exp_id}: modelo final existe sem checkpoints; "
+                  f"pulando (use --overwrite para refazer).")
         return log_csv
 
     device = get_device()
@@ -117,20 +134,36 @@ def train_one(
     )
 
     cls = _ALGO_CLS[algo]
-    ckpt_path, ckpt_steps = _find_latest_checkpoint(exp_id)
 
-    # 3) Lógica de RESUME — se há checkpoint parcial e não fizemos overwrite
-    if ckpt_path is not None and not overwrite and ckpt_steps < total_timesteps:
+    # 3) Lógica de RESUME — continua do ponto mais avançado disponível.
+    #    Prioriza o último checkpoint; se não houver mas existe modelo final,
+    #    retoma a partir do modelo final (caso de estender 500k → 2M quando
+    #    o final == último checkpoint).
+    resume_source = None
+    resume_steps = 0
+    if not overwrite:
+        if ckpt_path is not None and ckpt_steps < total_timesteps:
+            resume_source = ckpt_path
+            resume_steps = ckpt_steps
+        elif model_pt.exists() and ckpt_steps < total_timesteps:
+            # Sem checkpoint utilizável, mas há modelo final — retoma dele.
+            # Assume que o final corresponde ao maior checkpoint (ckpt_steps),
+            # ou 0 se nenhum checkpoint existir (treina o alvo inteiro a partir
+            # dos pesos do modelo final).
+            resume_source = model_pt
+            resume_steps = ckpt_steps  # pode ser 0 se não havia checkpoints
+
+    if resume_source is not None:
         if verbose:
-            print(f"  ↻ Retomando {exp_id} do checkpoint: {ckpt_path.name} "
-                  f"({ckpt_steps:,} steps já feitos)")
+            print(f"  ↻ Retomando {exp_id} de: {resume_source.name} "
+                  f"({resume_steps:,} steps já feitos → alvo {total_timesteps:,})")
         model = cls.load(
-            str(ckpt_path),
+            str(resume_source),
             env=train_env,
             device=device,
             tensorboard_log=str(tb_path),
         )
-        remaining = total_timesteps - ckpt_steps
+        remaining = total_timesteps - resume_steps
         reset_num_timesteps = False   # mantém contagem do TensorBoard contínua
     else:
         common_kwargs = dict(

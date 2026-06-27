@@ -81,8 +81,47 @@ PROFILES = {
         seeds_to_run    = [42],
         n_checkpoints   = 3,
     ),
+    "long": dict(
+        # ~30-60 min por algo (1 fase, 1 seed) — esperado para PPO/A2C
+        # já mostrarem progresso visível em Mario (passar do 1º Goomba e tal).
+        # Boa zona de validação antes do full.
+        total_timesteps = 250_000,
+        eval_freq       = 10_000,
+        n_eval_episodes = 5,
+        stages_to_run   = ["1-1"],
+        seeds_to_run    = [42],
+        n_checkpoints   = 5,
+    ),
     "full": dict(
         total_timesteps = 500_000,
+        eval_freq       = 10_000,
+        n_eval_episodes = 5,
+        stages_to_run   = STAGES,
+        seeds_to_run    = SEEDS,
+        n_checkpoints   = 5,
+    ),
+    "scaling": dict(
+        # Experimento de escala de orçamento: testa se MAIS timesteps resolvem
+        # a não-conclusão observada em 500k. Foca em 2 fases (1 fácil + 1 difícil)
+        # × 3 algos × 3 seeds = 18 treinos de 2M timesteps.
+        #
+        # APROVEITA OS CHECKPOINTS DE 500k: se já existe checkpoint de 500k de um
+        # treino, o resume continua dali e treina só os 1.5M restantes.
+        #
+        # Tempo estimado (RTX 4070, retomando de 500k):
+        #   DQN (1 env):  ~6-9h × 6 treinos  = ~45h
+        #   PPO (8 envs): ~3-5h × 6 treinos  = ~25h
+        #   A2C (16 envs):~3-5h × 6 treinos  = ~25h
+        # Fatie por algoritmo em terminais paralelos.
+        total_timesteps = 2_000_000,
+        eval_freq       = 20_000,    # menos avaliações (eval custa tempo); 100 pontos
+        n_eval_episodes = 5,
+        stages_to_run   = ["1-1", "4-1"],   # 1 fácil + 1 difícil
+        seeds_to_run    = SEEDS,
+        n_checkpoints   = 10,        # checkpoint a cada 200k (resume granular)
+    ),
+    "full-mi": dict(
+        total_timesteps = 2_000_000,
         eval_freq       = 10_000,
         n_eval_episodes = 5,
         stages_to_run   = STAGES,

@@ -52,6 +52,19 @@ class MarioEvalCallback(BaseCallback):
             seed=self.seed + 9999,
             use_subproc=False,
         )
+        # Se estamos retomando um treino (CSV já existe), pré-carrega as linhas
+        # anteriores para PRESERVAR a trajetória completa (0 → N) em vez de
+        # sobrescrever só com a parte nova (N → alvo).
+        if self.log_path.exists():
+            try:
+                import pandas as _pd
+                prev = _pd.read_csv(self.log_path)
+                self._rows = prev.to_dict("records")
+                if self.verbose >= 1:
+                    print(f"  [eval] CSV existente carregado: "
+                          f"{len(self._rows)} linhas preservadas de {self.log_path.name}")
+            except Exception:
+                self._rows = []
 
     def _run_eval(self):
         """Executa n_eval_episodes e devolve uma lista de dicts com métricas."""
