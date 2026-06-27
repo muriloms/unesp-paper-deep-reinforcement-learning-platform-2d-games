@@ -5,6 +5,9 @@ checkpoints/
 tensorboard/
 logs/
 
+mario_drl_results_v1/
+mario_drl_results_v2/
+
 # Python
 __pycache__/
 *.py[cod]
