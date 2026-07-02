@@ -1,46 +1,46 @@
 ==============================================================================
-STATUS DOS TREINOS — alvo: 2,000,000 timesteps
+STATUS DOS TREINOS — alvo: 4,000,000 timesteps
 Diretório: /home/murilo/Documents/academico/unesp_cc/repos/unesp-paper-deep-reinforcement-learning-platform-2d-games/mario_drl_results
 ==============================================================================
 
 experimento                           treinado  modelo       falta  estado
 ------------------------------------------------------------------------------
-A2C_stage1-1_seed123                 2,000,000     sim           0  ✓ completo
-A2C_stage1-1_seed2024                2,000,000     sim           0  ✓ completo
-A2C_stage1-1_seed42                  2,000,000     sim           0  ✓ completo
-A2C_stage1-2_seed123                   500,000     sim   1,500,000  ↻ retomável (de 500,000)
-A2C_stage1-2_seed2024                  500,000     sim   1,500,000  ↻ retomável (de 500,000)
-A2C_stage1-2_seed42                    500,000     sim   1,500,000  ↻ retomável (de 500,000)
-A2C_stage4-1_seed123                 2,000,000     sim           0  ✓ completo
-A2C_stage4-1_seed2024                2,000,000     sim           0  ✓ completo
-A2C_stage4-1_seed42                  2,000,000     sim           0  ✓ completo
-A2C_stage8-1_seed123                   500,000     sim   1,500,000  ↻ retomável (de 500,000)
-A2C_stage8-1_seed2024                  500,000     sim   1,500,000  ↻ retomável (de 500,000)
-A2C_stage8-1_seed42                    500,000     sim   1,500,000  ↻ retomável (de 500,000)
-DQN_stage1-1_seed123                 2,000,000     sim           0  ✓ completo
-DQN_stage1-1_seed2024                2,000,000     sim           0  ✓ completo
-DQN_stage1-1_seed42                  2,000,000     sim           0  ✓ completo
-DQN_stage1-2_seed123                 2,000,000     sim           0  ✓ completo
-DQN_stage1-2_seed2024                2,000,000     sim           0  ✓ completo
-DQN_stage1-2_seed42                  1,930,000     sim      70,000  ↻ retomável (de 1,930,000)
-DQN_stage4-1_seed123                 1,920,000     sim      80,000  ↻ retomável (de 1,920,000)
-DQN_stage4-1_seed2024                2,000,000     sim           0  ✓ completo
-DQN_stage4-1_seed42                  2,000,000     sim           0  ✓ completo
-DQN_stage8-1_seed123                   500,000     sim   1,500,000  ↻ retomável (de 500,000)
-DQN_stage8-1_seed2024                  500,000     sim   1,500,000  ↻ retomável (de 500,000)
-DQN_stage8-1_seed42                    500,000     sim   1,500,000  ↻ retomável (de 500,000)
-PPO_stage1-1_seed123                 2,000,000     sim           0  ✓ completo
-PPO_stage1-1_seed2024                2,000,000     sim           0  ✓ completo
-PPO_stage1-1_seed42                  2,000,000     sim           0  ✓ completo
-PPO_stage1-2_seed123                   500,000     sim   1,500,000  ↻ retomável (de 500,000)
-PPO_stage1-2_seed2024                  500,000     sim   1,500,000  ↻ retomável (de 500,000)
-PPO_stage1-2_seed42                    500,000     sim   1,500,000  ↻ retomável (de 500,000)
-PPO_stage4-1_seed123                 2,000,000     sim           0  ✓ completo
-PPO_stage4-1_seed2024                2,000,000     sim           0  ✓ completo
-PPO_stage4-1_seed42                  2,000,000     sim           0  ✓ completo
-PPO_stage8-1_seed123                   500,000     sim   1,500,000  ↻ retomável (de 500,000)
-PPO_stage8-1_seed2024                  500,000     sim   1,500,000  ↻ retomável (de 500,000)
-PPO_stage8-1_seed42                    500,000     sim   1,500,000  ↻ retomável (de 500,000)
+A2C_stage1-1_seed123                 5,300,016     sim           0  ✓ completo
+A2C_stage1-1_seed2024                4,000,000     sim           0  ✓ completo
+A2C_stage1-1_seed42                  4,000,016     sim           0  ✓ completo
+A2C_stage1-2_seed123                 4,000,000     sim           0  ✓ completo
+A2C_stage1-2_seed2024                4,000,000     sim           0  ✓ completo
+A2C_stage1-2_seed42                  4,000,000     sim           0  ✓ completo
+A2C_stage4-1_seed123                 4,000,000     sim           0  ✓ completo
+A2C_stage4-1_seed2024                4,000,000     sim           0  ✓ completo
+A2C_stage4-1_seed42                  4,000,000     sim           0  ✓ completo
+A2C_stage8-1_seed123                 4,000,000     sim           0  ✓ completo
+A2C_stage8-1_seed2024                4,000,000     sim           0  ✓ completo
+A2C_stage8-1_seed42                  4,000,000     sim           0  ✓ completo
+DQN_stage1-1_seed123                 4,000,000     sim           0  ✓ completo
+DQN_stage1-1_seed2024                4,000,000     sim           0  ✓ completo
+DQN_stage1-1_seed42                  4,000,000     sim           0  ✓ completo
+DQN_stage1-2_seed123                 4,000,000     sim           0  ✓ completo
+DQN_stage1-2_seed2024                4,000,000     sim           0  ✓ completo
+DQN_stage1-2_seed42                  4,430,001     sim           0  ✓ completo
+DQN_stage4-1_seed123                 4,080,000     sim           0  ✓ completo
+DQN_stage4-1_seed2024                4,020,001     sim           0  ✓ completo
+DQN_stage4-1_seed42                  4,000,000     sim           0  ✓ completo
+DQN_stage8-1_seed123                 4,000,000     sim           0  ✓ completo
+DQN_stage8-1_seed2024                5,720,001     sim           0  ✓ completo
+DQN_stage8-1_seed42                  4,000,000     sim           0  ✓ completo
+PPO_stage1-1_seed123                 2,000,000     sim   2,000,000  ↻ retomável (de 2,000,000)
+PPO_stage1-1_seed2024                2,000,000     sim   2,000,000  ↻ retomável (de 2,000,000)
+PPO_stage1-1_seed42                  2,000,000     sim   2,000,000  ↻ retomável (de 2,000,000)
+PPO_stage1-2_seed123                   500,000     sim   3,500,000  ↻ retomável (de 500,000)
+PPO_stage1-2_seed2024                  500,000     sim   3,500,000  ↻ retomável (de 500,000)
+PPO_stage1-2_seed42                    500,000     sim   3,500,000  ↻ retomável (de 500,000)
+PPO_stage4-1_seed123                 2,000,000     sim   2,000,000  ↻ retomável (de 2,000,000)
+PPO_stage4-1_seed2024                2,000,000     sim   2,000,000  ↻ retomável (de 2,000,000)
+PPO_stage4-1_seed42                  2,000,000     sim   2,000,000  ↻ retomável (de 2,000,000)
+PPO_stage8-1_seed123                   500,000     sim   3,500,000  ↻ retomável (de 500,000)
+PPO_stage8-1_seed2024                  500,000     sim   3,500,000  ↻ retomável (de 500,000)
+PPO_stage8-1_seed42                    500,000     sim   3,500,000  ↻ retomável (de 500,000)
 ------------------------------------------------------------------------------
-Total: 36 | completos: 19 | retomáveis: 17 | sem modelo: 0
+Total: 36 | completos: 24 | retomáveis: 12 | sem modelo: 0
 ==============================================================================
